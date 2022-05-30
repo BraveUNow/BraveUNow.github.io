@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>markdownRender</title>
+      <link href="/2022/05/30/markdownRender/"/>
+      <url>/2022/05/30/markdownRender/</url>
+      
+        <content type="html"><![CDATA[<hr><p>*[HTML]: 超文本标记语言</p><p>:)</p><p>参考文献[^1]</p><p>++下划线++</p><p>==标记==</p><p>H<sub>2</sub>O</p><p>X<sup>2</sup></p><p>未选：<code>- [ ]</code> 选中：<code>- [x]</code></p><p>+++ <strong>点击折叠</strong></p><p>这是被隐藏的内容</p><p>+++</p><p><span class="math inline">\(x^2+y^2=3\)</span></p><p><span class="math display">\[x^2-y^2=1\]</span></p><p>::: tips <strong>提示</strong> 这是一个提示 :::</p><p>::: warning <strong>注意</strong> 这是一个警告 :::</p><p>::: danger <strong>警告</strong> 这是一个危险信号 :::</p><p>::: success <strong>成功</strong> 这是一个成功信号 :::</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> programming </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>mysql笔记</title>
       <link href="/2022/05/30/sql%20note/"/>
       <url>/2022/05/30/sql%20note/</url>

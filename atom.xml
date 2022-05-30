@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-05-30T14:02:45.533Z</updated>
+  <updated>2022-05-30T15:15:17.569Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdownRender</title>
+    <link href="http://example.com/2022/05/30/markdownRender/"/>
+    <id>http://example.com/2022/05/30/markdownRender/</id>
+    <published>2022-05-30T14:19:27.000Z</published>
+    <updated>2022-05-30T15:15:17.569Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>*[HTML]: 超文本标记语言</p><p>:)</p><p>参考文献[^1]</p><p>++下划线++</p><p>==标记==</p><p>H<sub>2</sub>O</p><p>X<sup>2</sup></p><p>未选：<code>- [ ]</code> 选中：<code>- [x]</code></p><p>+++ <strong>点击折叠</strong></p><p>这是被隐藏的内容</p><p>+++</p><p><span class="math inline">\(x^2+y^2=3\)</span></p><p><span class="math display">\[x^2-y^2=1\]</span></p><p>::: tips <strong>提示</strong> 这是一个提示 :::</p><p>::: warning <strong>注意</strong> 这是一个警告 :::</p><p>::: danger <strong>警告</strong> 这是一个危险信号 :::</p><p>::: success <strong>成功</strong> 这是一个成功信号 :::</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;*[HTML]: 超文本标记语言&lt;/p&gt;
+&lt;p&gt;:)&lt;/p&gt;
+&lt;p&gt;参考文献[^1]&lt;/p&gt;
+&lt;p&gt;++下划线++&lt;/p&gt;
+&lt;p&gt;==标记==&lt;/p&gt;
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;X&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;未选：&lt;code&gt;-</summary>
+      
+    
+    
+    
+    <category term="programming" scheme="http://example.com/categories/programming/"/>
+    
+    
+    <category term="markdown" scheme="http://example.com/tags/markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>mysql笔记</title>

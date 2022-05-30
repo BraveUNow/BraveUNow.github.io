@@ -1,146 +1,561 @@
-<!DOCTYPE html><html class="appearance-auto" lang="zh"><head><meta charset="UTF-8"><title>BraveUNow's blog</title><meta name="description" content="洪宇新的个人博客，主要分享自己的一些学习笔记和生活经历"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
-<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.2.0">
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="洪宇新的个人博客，主要分享自己的一些学习笔记和生活经历">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BraveUNow&#39;s hut">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="BraveUNow&#39;s hut">
+<meta property="og:description" content="洪宇新的个人博客，主要分享自己的一些学习笔记和生活经历">
+<meta property="og:locale">
+<meta property="article:author" content="BraveUNow">
+<meta property="article:tag" content="operations research, programming">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh'
+  };
+</script>
+
+  <title>BraveUNow's hut</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end -->
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="BraveUNow's hut" type="application/atom+xml">
-</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">BraveUNow's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/mysql"><i class="tag post-item-tag">mysql</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/05/30/sql%20note/">mysql笔记</a></h2><time class="has-text-grey" datetime="2022-05-30T05:34:07.679Z">2022-05-30</time><p class="is-flex-grow-2 mt-2">Database123456789101112131415161718192021222324252627net start mysql#连接服务器net stop mysql#关闭服务器mysql -uroot -p#登陆，密码hyx14131413#查看数据库SHOW DATABASES;#查看数据库，设有 test_db、db_test、db_test_db 三个数据库SHOW DATABASES LIKE 'test_db';#查看与 test_db 完全匹配的数据库SHOW DATABASES LIKE '%test%';#查看名字中包含 test 的数据库SHOW DATABASES LIKE 'db%';#查看名字以 db 开头的数据库#创建数据库CREATE DATABASE [IF NOT..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/05/30/sql%20note/">更多</a></section></article></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><style>.search-widget .search-input {
-    border: none;
-    outline: none;
-    background: transparent;
-    color: var(--second-text-color);
-}
-.search-widget .search-content {
-    position: absolute;
-    left: 0;
-    top: calc(100% - 3px);
-    z-index: 2;
+</head>
 
-    width: 100%;
-    height: 0;
-    max-height: 550px;
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-    overflow: auto;
-    box-sizing: border-box;
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-    background: var(--top-bar-bg-color);
-    backdrop-filter: blur(var(--backdropFilter));
-    -webkit-backdrop-filter: blur(var(--backdropFilter));
+  <div class="site-meta">
 
-    border-bottom-left-radius: var(--borderRadius);
-    border-bottom-right-radius: var(--borderRadius);
-    box-shadow: 0 12px 15px rgba(0, 0, 0, 0.08);
-}
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BraveUNow's hut</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-.search-widget .search-content a:hover h5 {
-    color: #3273dc!important;
-}
-</style><main class="aside-card-container search-widget is-relative"><label for="searchInput"><div class="is-flex px-4" id="searchButton"><i class="iconfont icon--search1 mr-1"></i><input class="search-input is-flex-grow-1" id="searchInput" placeholder="搜索内容.."></div></label><section class="search-content content" id="searchContent"></section></main><script>var searchDatabase = []
-var searchInputEl = document.getElementById('searchInput')
-var searchButtonEl = document.getElementById('searchButton')
-var searchResultEl = document.getElementById('searchContent')
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
 
-searchInputEl.oninput = function (evt) {
-    var searchValue = evt.srcElement.value
-    var haveSearchValue = Boolean(searchValue.trim())
-    if (!haveSearchValue) {
-        searchResultEl.style.height = 0
-        searchResultEl.innerHTML = null
-        return
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Startseite</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archiv</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/30/markdownRender/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="BraveUNow">
+      <meta itemprop="description" content="洪宇新的个人博客，主要分享自己的一些学习笔记和生活经历">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BraveUNow's hut">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/30/markdownRender/" class="post-title-link" itemprop="url">markdownRender</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              <time title="Erstellt: 2022-05-30 22:19:27 / Geändert am: 23:15:17" itemprop="dateCreated datePublished" datetime="2022-05-30T22:19:27+08:00">2022-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">programming</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>*[HTML]: 超文本标记语言</p>
+<p>:)</p>
+<p>参考文献[^1]</p>
+<p>++下划线++</p>
+<p>==标记==</p>
+<p>H<sub>2</sub>O</p>
+<p>X<sup>2</sup></p>
+<p>未选：<code>- [ ]</code> 选中：<code>- [x]</code></p>
+<p>+++ <strong>点击折叠</strong></p>
+<p>这是被隐藏的内容</p>
+<p>+++</p>
+<p><span class="math inline">\(x^2+y^2=3\)</span></p>
+<p><span class="math display">\[
+x^2-y^2=1
+\]</span></p>
+<p>::: tips <strong>提示</strong> 这是一个提示 :::</p>
+<p>::: warning <strong>注意</strong> 这是一个警告 :::</p>
+<p>::: danger <strong>警告</strong> 这是一个危险信号 :::</p>
+<p>::: success <strong>成功</strong> 这是一个成功信号 :::</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/30/sql%20note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="BraveUNow">
+      <meta itemprop="description" content="洪宇新的个人博客，主要分享自己的一些学习笔记和生活经历">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BraveUNow's hut">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/30/sql%20note/" class="post-title-link" itemprop="url">mysql笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              <time title="Erstellt: 2022-05-30 13:34:07 / Geändert am: 22:02:45" itemprop="dateCreated datePublished" datetime="2022-05-30T13:34:07+08:00">2022-05-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">programming</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h2><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">net <span class="keyword">start</span> mysql#连接服务器</span><br><span class="line">net stop mysql#关闭服务器</span><br><span class="line"></span><br><span class="line">mysql <span class="operator">-</span>uroot <span class="operator">-</span>p#登陆，密码hyx14131413</span><br><span class="line"></span><br><span class="line">#查看数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES;#查看数据库，设有 test_db、db_test、db_test_db 三个数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">'test_db'</span>;#查看与 test_db 完全匹配的数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">'%test%'</span>;#查看名字中包含 test 的数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">'db%'</span>;#查看名字以 db 开头的数据库</span><br><span class="line"></span><br><span class="line">#创建数据库</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] new_database#数据库为.<span class="keyword">sql</span>文件，文件不存在时才会创建</span><br><span class="line">[<span class="keyword">DEFAULT</span>] <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8#设置字符集为utf8，不指定使用默认字符集</span><br><span class="line">[<span class="keyword">DEFAULT</span>] <span class="keyword">COLLATE</span> utf8_chinese_ci;#制定默认校对规则（简体中文，不区分大小写）</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> DATABASE new_database;#查看数据库的定义声明</span><br><span class="line"></span><br><span class="line">#修改数据库</span><br><span class="line"><span class="keyword">ALTER</span> DATABASE [数据库名] { </span><br><span class="line">[ <span class="keyword">DEFAULT</span> ] <span class="type">CHARACTER</span> <span class="keyword">SET</span> <span class="operator">&lt;</span>字符集名<span class="operator">&gt;</span> <span class="operator">|</span></span><br><span class="line">[ <span class="keyword">DEFAULT</span> ] <span class="keyword">COLLATE</span> <span class="operator">&lt;</span>校对规则名<span class="operator">&gt;</span>}</span><br><span class="line"></span><br><span class="line">#删除数据库</span><br><span class="line"><span class="keyword">DROP</span> DATABASE [IF <span class="keyword">EXISTS</span>] new_database#删除new_database数据库，无法恢复，删除前注意备份</span><br><span class="line"></span><br><span class="line">#选择数据库</span><br><span class="line">USE new_database</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h2><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#创建表</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> website (</span><br><span class="line">    id      <span class="type">INT</span>              <span class="keyword">NOT</span> <span class="keyword">NULL</span>   AUTO_INCREMENT,#id列，<span class="type">int</span>数据类型,非空，自动增长序列</span><br><span class="line">    name    <span class="type">VARCHAR</span>(<span class="number">20</span>)      <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    url     <span class="type">VARCHAR</span>(<span class="number">30</span>)                 <span class="keyword">DEFAULT</span> <span class="string">''</span>,#设置默认值</span><br><span class="line">    age     TINYINT UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    alexa   <span class="type">INT</span> UNSIGNED     <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    uv      <span class="type">FLOAT</span>                       <span class="keyword">DEFAULT</span> <span class="string">'0'</span>,</span><br><span class="line">    country <span class="type">CHAR</span>(<span class="number">3</span>)          <span class="keyword">NOT</span> <span class="keyword">NULL</span>   <span class="keyword">DEFAULT</span> <span class="string">''</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (`id`)#设置主键</span><br><span class="line">    <span class="keyword">UNIQUE</span> (<span class="string">'url'</span>)</span><br><span class="line">);</span><br><span class="line">#查询表的结构</span><br><span class="line"><span class="keyword">DESC</span> website;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*表约束</span></span><br><span class="line"><span class="comment">NOT NULL：指示某列不能存储 NULL 值</span></span><br><span class="line"><span class="comment">UNIQUE：保证某列的每行必须有唯一的值</span></span><br><span class="line"><span class="comment">PRIMARY KEY：NOT NULL 和 UNIQUE 的结合</span></span><br><span class="line"><span class="comment">FOREIGN KEY：保证一个表中的数据匹配另一个表中的值的参照完整性</span></span><br><span class="line"><span class="comment">CHECK：保证列中的值符合指定的条件</span></span><br><span class="line"><span class="comment">DEFAULT：规定没有给列赋值时的默认值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">#删除表</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> webiste;</span><br><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> table_name#删除表内数据</span><br><span class="line"></span><br><span class="line">#表重命名</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> website RENAME <span class="keyword">TO</span> tb_website;</span><br><span class="line">RENAME website <span class="keyword">TO</span> tb_website;</span><br><span class="line">#修改表约束，（在表名后需要加数据类型）</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName MODIFY attributes datatype Constraints</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> (attribute)#设置<span class="keyword">UNIQUE</span>约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName <span class="keyword">DROP</span> INDEX (attribute)#取消<span class="keyword">UNIQUE</span>约束</span><br><span class="line"><span class="keyword">FOREIGN</span> KEY (P_Id) <span class="keyword">REFERENCES</span> Persons(P_Id)<span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE #设置外键<span class="comment">--级联删除</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Orders <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (P_Id) <span class="keyword">REFERENCES</span> Persons(P_Id)#设置外键</span><br><span class="line">#导入表,从D:<span class="operator">/</span>downloads中导入access_log表</span><br><span class="line"> SOURCE D:<span class="operator">/</span>downloads<span class="operator">/</span>access_log.sql;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#选择Webistes表中的name, country列值为CN的记录</span><br><span class="line"><span class="keyword">SELECT</span> name,country <span class="keyword">FROM</span> Websites <span class="keyword">WHERE</span> country<span class="operator">=</span><span class="string">'CN'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> country <span class="keyword">FROM</span> Websites;#从"Websites"表的"country"列中选取唯一不同的值</span><br><span class="line">#运算符：<span class="operator">=</span>、<span class="operator">!=</span>或(<span class="operator">&lt;&gt;</span>)、<span class="operator">&gt;</span>、<span class="operator">&lt;</span>、<span class="operator">&gt;=</span>、<span class="operator">&lt;=</span>、<span class="keyword">BETWEEN</span>（某个范围）、<span class="keyword">LIKE</span>（某种模式）、<span class="keyword">IN</span>（多个可能值）</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> Websites <span class="keyword">where</span> country <span class="keyword">in</span> (<span class="string">'CN'</span>,<span class="string">'USA'</span>);</span><br><span class="line">#使用<span class="keyword">AND</span>、<span class="keyword">OR</span></span><br><span class="line"></span><br><span class="line">#数据库排序，从Webistes表选取所有网站，并按照 "alexa" 列排序，默认升序，可以选择多列，使用<span class="keyword">DESC</span>关键字表示降序</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Websites <span class="keyword">ORDER</span> <span class="keyword">BY</span> alexa <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line">#添加记录</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name <span class="keyword">VALUES</span> (value1,value2,value3,...);#无需指定要插入数据的列名，只需提供被插入的值即可</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column1,column2,column3,...) <span class="keyword">VALUES</span> (value1,value2,value3,...);#指定列名及被插入的值</span><br><span class="line">#插入新表</span><br><span class="line">#将websites表中country值为CN的记录放进new_website表，要求new_websites存在</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> new_websites <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> websites <span class="keyword">WHERE</span> country<span class="operator">=</span><span class="string">'CN'</span>;</span><br><span class="line">#也是插入一行,要求表new_websites 不存在</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">INTO</span> new_websites <span class="keyword">FROM</span> websites <span class="keyword">WHERE</span> country<span class="operator">=</span><span class="string">'CN'</span>;</span><br><span class="line"></span><br><span class="line">#更新记录,更新name为菜鸟教程的记录的alexa为<span class="number">5000</span>，country为USA，若没有<span class="keyword">WHERE</span>，会修改所有记录</span><br><span class="line"><span class="keyword">UPDATE</span> Websites <span class="keyword">SET</span> alexa<span class="operator">=</span><span class="string">'5000'</span>, country<span class="operator">=</span><span class="string">'USA'</span>  <span class="keyword">WHERE</span> name<span class="operator">=</span><span class="string">'菜鸟教程'</span>;</span><br><span class="line"><span class="keyword">set</span> sql_safe_updates<span class="operator">=</span><span class="number">1</span>; #该参数开启的情况下，必须在<span class="keyword">update</span> 语句后携带 <span class="keyword">where</span> 条件，否则就会报错</span><br><span class="line"></span><br><span class="line">#删除记录,从 "Websites" 表中删除网站名为 "Facebook" 且国家为 USA 的网站。</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> websites <span class="keyword">WHERE</span> name<span class="operator">=</span><span class="string">'Facebook'</span> <span class="keyword">AND</span> country<span class="operator">=</span><span class="string">'USA'</span>;</span><br><span class="line"><span class="keyword">DELETE</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name;#删除所有记录</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Websites LIMIT <span class="number">2</span>;#选取头两条记录</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> websites <span class="keyword">ORDER</span> <span class="keyword">BY</span> id <span class="keyword">DESC</span> LIMIT <span class="number">2</span>;#变相返回后<span class="number">2</span>行</span><br><span class="line"></span><br><span class="line"><span class="comment">/*通配符（与SQL LIKE一起使用）：</span></span><br><span class="line"><span class="comment">%：替代 0 个或多个字符；</span></span><br><span class="line"><span class="comment">_：替代 1 个字符</span></span><br><span class="line"><span class="comment">[charlist]:字符列中的任何单一字符</span></span><br><span class="line"><span class="comment">[^charlist] or [!charlist]：不在字符列中的任何单一字符</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> websites <span class="keyword">where</span> name regexp <span class="string">'^[A-H]'</span>;#选取 name 以 A 到 H 字母开头的网站</span><br><span class="line"></span><br><span class="line">#选取name为"Google"或"菜鸟教程"或"淘宝"的所有网站</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Websites <span class="keyword">WHERE</span> name <span class="keyword">IN</span> (<span class="string">'Google'</span>,<span class="string">'菜鸟教程'</span>,<span class="string">'淘宝'</span>);</span><br><span class="line">#选取alexa(不)介于 <span class="number">1</span> 和 <span class="number">200</span> 之间的所有网站</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Websites <span class="keyword">WHERE</span> alexa (<span class="keyword">NOT</span>) <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">200</span>;</span><br><span class="line">#选取 alexa 介于 <span class="number">1</span> 和 <span class="number">20</span> 之间但 country 不为 USA 和 IND 的所有网站：</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> websites <span class="keyword">WHERE</span> (alexa <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">200</span>) <span class="keyword">AND</span> country <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="string">'USA'</span>,<span class="string">'IND	'</span>);</span><br><span class="line">#选取 access表中<span class="type">date</span> 介于 <span class="string">'2016-05-10'</span> 和 <span class="string">'2016-05-14'</span> 之间的所有访问记录</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> access <span class="keyword">WHERE</span> <span class="type">date</span> <span class="keyword">BETWEEN</span> <span class="string">'2016-05-10'</span> <span class="keyword">AND</span> <span class="string">'2016-05-14'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">SQL</span>别名</span><br><span class="line"><span class="keyword">SELECT</span> column_name <span class="keyword">AS</span> alias_name <span class="keyword">FROM</span> table_name;#列的别名</span><br><span class="line"><span class="keyword">SELECT</span> column_name(s) <span class="keyword">FROM</span> table_name <span class="keyword">AS</span> alias_name;#表的别名</span><br><span class="line"><span class="keyword">select</span> name <span class="keyword">as</span> n, country <span class="keyword">as</span> c <span class="keyword">from</span> websites;#展示name和country列并起名为n,c</span><br><span class="line">#把三个列（url、alexa 和 country）结合在一起，并创建一个名为 "site_info" 的别名，中间由<span class="string">'|'</span>和<span class="string">'，'</span>连接</span><br><span class="line"><span class="keyword">SELECT</span> name, CONCAT(url, <span class="string">'| '</span>, alexa, <span class="string">', '</span>, country) <span class="keyword">AS</span> site_info <span class="keyword">FROM</span> Websites;</span><br><span class="line">#选取 "菜鸟教程" 的所有访问记录,并为websites和access指定别名w和a，将两个表一一对应的记录连接起来</span><br><span class="line"><span class="keyword">SELECT</span> w.name, w.url, a.count, a.date <span class="keyword">FROM</span> Websites <span class="keyword">AS</span> w, access_log <span class="keyword">AS</span> a <span class="keyword">WHERE</span> a.site_id<span class="operator">=</span>w.id <span class="keyword">and</span> w.name<span class="operator">=</span>"菜鸟教程";</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h2><p><strong>A inner join B</strong> 取交集。</p>
+<p><strong>A left join B</strong> 取 A 全部，B 没有对应的值为 null。</p>
+<p><strong>A right join B</strong> 取 B 全部 A 没有对应的值为 null。</p>
+<p><strong>A full outer join B</strong> 取并集，彼此没有对应的值为 null。</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*INNER JOIN 关键字在表中存在至少一个匹配时返回行。</span></span><br><span class="line"><span class="comment">INNER JOIN 关键字在表中存在至少一个匹配时返回行。如果 "Websites" 表中的行在 "access" 中没有匹配，则不会列出这些行。</span></span><br><span class="line"><span class="comment">on 条件是在生成临时表时使用的条件;</span></span><br><span class="line"><span class="comment">where 条件是在临时表生成好后，再对临时表进行过滤的条件。*/</span></span><br><span class="line"><span class="keyword">SELECT</span> w.name, a.count,a.date <span class="keyword">FROM</span> websites <span class="keyword">as</span> w <span class="keyword">INNER</span> <span class="keyword">JOIN</span> access <span class="keyword">as</span> a <span class="keyword">ON</span> w.id<span class="operator">=</span>a.site_id <span class="keyword">order</span> <span class="keyword">by</span> a.count <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line">#<span class="keyword">LEFT</span> <span class="keyword">JOIN</span> 关键字从左表（table1）返回所有的行，即使右表（table2）中没有匹配。如果右表中没有匹配，则结果为 <span class="keyword">NULL</span>。</span><br><span class="line"><span class="keyword">SELECT</span> w.name, a.count,a.date <span class="keyword">FROM</span> websites <span class="keyword">as</span> w <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> access <span class="keyword">as</span> a <span class="keyword">ON</span> w.id<span class="operator">=</span>a.site_id <span class="keyword">order</span> <span class="keyword">by</span> a.count <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line">#<span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> 关键字从右表（table2）返回所有的行，即使左表（table1）中没有匹配。如果左表中没有匹配，则结果为 <span class="keyword">NULL</span></span><br><span class="line"><span class="keyword">SELECT</span> w.name, a.count,a.date <span class="keyword">FROM</span> websites <span class="keyword">as</span> w <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> access <span class="keyword">as</span> a <span class="keyword">ON</span> w.id<span class="operator">=</span>a.site_id <span class="keyword">order</span> <span class="keyword">by</span> a.count <span class="keyword">DESC</span>;</span><br><span class="line">#等价于</span><br><span class="line"><span class="keyword">SELECT</span> w.name, a.count,a.date <span class="keyword">FROM</span> access <span class="keyword">as</span> a <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> websites <span class="keyword">as</span> w <span class="keyword">ON</span> w.id<span class="operator">=</span>a.site_id <span class="keyword">order</span> <span class="keyword">by</span> a.count <span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*FULL OUTER JOIN 关键字只要左表（table1）和右表（table2）其中一个表中存在匹配，则返回行</span></span><br><span class="line"><span class="comment">FULL OUTER JOIN 关键字结合了 LEFT JOIN 和 RIGHT JOIN 的结果。*/</span></span><br><span class="line"><span class="keyword">SELECT</span> w.name, a.count,a.date <span class="keyword">FROM</span> websites <span class="keyword">as</span> w <span class="keyword">FULL</span> <span class="keyword">JOIN</span> access <span class="keyword">as</span> a <span class="keyword">ON</span> w.id<span class="operator">=</span>a.site_id <span class="keyword">order</span> <span class="keyword">by</span> a.count <span class="keyword">DESC</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*UNION 操作符用于合并两个或多个 SELECT 语句的结果集。</span></span><br><span class="line"><span class="comment">UNION 内部的每个 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每个 SELECT 语句中的列的顺序必须相同。</span></span><br><span class="line"><span class="comment">默认地，UNION 操作符选取不同的值。如果允许重复的值，使用 UNION ALL。</span></span><br><span class="line"><span class="comment">UNION 结果集中的列名总是等于 UNION 中第一个 SELECT 语句中的列名。*/</span></span><br><span class="line"><span class="keyword">SELECT</span> url,country <span class="keyword">FROM</span> websites <span class="keyword">WHERE</span> country<span class="operator">=</span><span class="string">'CN'</span> <span class="keyword">UNION</span> <span class="keyword">SELECT</span> url,country <span class="keyword">FROM</span> apps <span class="keyword">order</span> <span class="keyword">by</span> country <span class="keyword">DESC</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h3 id="SELECT-INTO"><a href="#SELECT-INTO" class="headerlink" title="SELECT INTO"></a>SELECT INTO</h3><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 新表 <span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> 旧表 </span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> apps (app_name,url,country) <span class="keyword">SELECT</span> name,url,country <span class="keyword">FROM</span> websites <span class="keyword">WHERE</span> name<span class="operator">=</span><span class="string">'菜鸟教程'</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="CREATE-INDEX"><a href="#CREATE-INDEX" class="headerlink" title="CREATE INDEX"></a>CREATE INDEX</h3><p>CREATE INDEX 语句用于在表中创建索引。在不读取整个表的情况下，索引使数据库应用程序可以更快地查找数据。</p>
+<p>用户无法看到索引，它们只能被用来加速搜索/查询。</p>
+<p>更新一个包含索引的表需要比更新一个没有索引的表花费更多的时间，这是由于索引本身也需要更新。因此，理想的做法是仅仅在常常被搜索的列（以及表）上面创建索引。</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#在表上创建一个简单的索引。允许使用重复的值：</span><br><span class="line"><span class="keyword">CREATE</span> INDEX index_name <span class="keyword">ON</span> table_name (column_name)</span><br><span class="line">#在表上创建一个唯一的索引。不允许使用重复的值：唯一的索引意味着两个行不能拥有相同的索引值</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX index_name <span class="keyword">ON</span> table_name (column_name)</span><br><span class="line"></span><br><span class="line">#在Persons的LastName和FirstName上建立名为PIndex的索引	</span><br><span class="line"><span class="keyword">CREATE</span> INDEX PIndex <span class="keyword">ON</span> Persons (LastName, FirstName)</span><br><span class="line"></span><br><span class="line">#撤销索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">DROP</span> INDEX index_name</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="ALTER-TABLE"><a href="#ALTER-TABLE" class="headerlink" title="ALTER TABLE"></a>ALTER TABLE</h3><p>用于在已有的表中添加、删除或修改列</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> column_name datatype#添加列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> column_name#删除列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name MODIFY <span class="keyword">COLUMN</span> column_name datatype#修改列数据类型</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons AUTO_INCREMENT<span class="operator">=</span><span class="number">100</span>#让AUTO_INCREMENT 序列以其他的值起始</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="VIEW"><a href="#VIEW" class="headerlink" title="VIEW"></a>VIEW</h3><p>视图是基于 SQL 语句的结果集的可视化的表,视图包含行和列，就像一个真实的表。视图中的字段就是来自一个或多个数据库中的真实的表中的字段</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> view_name <span class="keyword">AS</span> <span class="keyword">SELECT</span> column_name(s) <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> <span class="keyword">condition</span>#创建视图</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> [view_name]#查询视图</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> view_name#撤销视图</span><br></pre></td></tr></tbody></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-
-    var searchResults = searching(searchValue)
-
-    if (searchResults.length > 0) {
-        renderSearchResults(searchResults)
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
     }
-}
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
-function renderSearchResults(results) {
-    searchResultEl.innerHTML = null
-    var fragment = document.createDocumentFragment()
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-    results.forEach(function (item) {
-        var link = document.createElement('a')
-        var title = document.createElement('h5')
-        var content = document.createElement('p')
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-        title.className = 'mb-1'
-        title.innerText = item.title
-        content.innerText = item.content
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
 
-        link.href = item.link
-        link.appendChild(title)
-        link.appendChild(content)
-        link.className = 'p-4 is-block'
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
 
-        fragment.appendChild(link)
-    })
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">BraveUNow</p>
+  <div class="site-description" itemprop="description">洪宇新的个人博客，主要分享自己的一些学习笔记和生活经历</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">Kategorien</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">schlagwörter</span></a>
+      </div>
+  </nav>
+</div>
 
-    searchResultEl.appendChild(fragment)
-    searchResultEl.style.height = 'auto'
-}
 
-function searching(inputText) {
-    var inputTexts = inputText.split(' ')
-    var searchResults = []
-    inputTexts.forEach(function (searchKey) {
-        var haveSearchValue = Boolean(searchKey.trim())
-        if (!haveSearchValue) return
 
-        var key = searchKey.toLowerCase()
+      </div>
 
-        for (var entry of searchDatabase) {
-            var title = entry.getElementsByTagName('title')[0].textContent
-            var link = entry.getElementsByTagName('link')[0].getAttribute('href')
-            var contentWithTags = entry.getElementsByTagName('content')[0].textContent
-            var rawContent = contentWithTags.trim().replace(/<[^>]+>/g, '').toLowerCase()
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
-            var LENGTH = 80
-            var finalContent = ''
-            var contentLength = rawContent.length
-            var searchResultIdx = rawContent.indexOf(key)
 
-            var startIdx = searchResultIdx - 20,
-                endIdx = startIdx + LENGTH
+      </div>
+    </main>
 
-            if (startIdx < 0) {
-                startIdx = 0
-                endIdx = 100
-            }
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
-            endIdx > contentLength && (endIdx = contentLength)
+        
 
-            finalContent = rawContent.substring(startIdx, endIdx)
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BraveUNow</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
 
-            if (title.indexOf(key) > -1 || searchResultIdx > -1) {
-                searchResults.push({
-                    link: link,
-                    title: title,
-                    content: finalContent
-                })
-            }
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
         }
-    })
-    return searchResults
-}
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
-searchButtonEl.onclick = function () {
-    if (searchDatabase.length > 0) return;
+    
 
-    fetch(window.location.href + '/search.xml').then(res => res.text()).then(res => {
-        var domparser = new DOMParser
-        var doc = domparser.parseFromString(res, 'application/xml')
-        searchDatabase = doc.getElementsByTagName('search')[0].children
-    })
-}</script><main class="aside-card-container profile-widget"><!-- todo: 使用取色工具动态阴影--><section class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center"><section class="is-flex is-justify-content-center avatar is-clipped skeleton"><!-- debug images "https://api.ixiaowai.cn/gqapi/gqapi.php"--><img class="js-img-fadeIn" src="/images/avatar.jpg" alt="user avatar"></section><h3 class="user-name">BraveUNow</h3><blockquote class="has-text-centered is-relative"><span style="margin-bottom: 5px;">May the Force be with you</span></blockquote><address class="has-text-centered has-text-grey"><i class="iconfont icon-location" style="margin-right: 5px;"></i><span class="has-text-grey">In the dust</span></address></section><section class="sns-container is-flex is-justify-content-center is-align-items-center"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/https://github.com/BraveUNow"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/https://www.zhihu.com/people/hong-yu-xin-30"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section></main><main class="aside-card-container recent-widget"><h3>最近</h3><ul><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://ui-avatars.com/api/?background=f5f5f5&amp;name=my" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2022/05/30/sql%20note/">mysql笔记</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2022-05-30T05:34:07.679Z">2022-05-30</time></section></li></ul></main><main class="aside-card-container categories-widget category-page"><h3>分类</h3><section><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a><span class="category-list-count">1</span></li></ul></section></main><main class="aside-card-container archives-widget"><h3>归档</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li></ul></section></main><main class="aside-card-container tag-widget"><h3>标签</h3><section><a href="/tags/mysql"><span class="tag post-item-tag" style="margin-bottom: 5px;">mysql</span></a></section></main></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+  
 
-window.addEventListener('resize', $claudia.throttle(function () {
-    var images = document.querySelectorAll('.js-img-fadeIn')
-
-    images.forEach($claudia.blurBackdropImg)
-}, 150))</script></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/https://github.com/BraveUNow"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/https://www.zhihu.com/people/hong-yu-xin-30"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> BraveUNow 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
-
-window.addEventListener('resize', $claudia.throttle(function () {
-    var images = document.querySelectorAll('.js-img-fadeIn')
-
-    images.forEach($claudia.blurBackdropImg)
-}, 150))</script></body></html>
+</body>
+</html>
