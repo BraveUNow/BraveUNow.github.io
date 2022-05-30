@@ -84,7 +84,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Cambiar a barra de navegación">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -113,12 +113,12 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Inicio</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archivo</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
 
   </li>
   </ul>
@@ -162,7 +162,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/30/sql%20note/" class="post-title-link" itemprop="url">Sin título</a>
+            <a href="/2022/05/30/sql%20note/" class="post-title-link" itemprop="url">بدون عنوان</a>
         </h2>
 
         <div class="post-meta">
@@ -170,10 +170,10 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Publicado el</span>
+              <span class="post-meta-item-text">نُشر في</span>
               
 
-              <time title="Creado por: 2022-05-30 13:34:07 / Modificado por: 13:43:10" itemprop="dateCreated datePublished" datetime="2022-05-30T13:34:07+08:00">2022-05-30</time>
+              <time title="أُنشأ: 2022-05-30 13:34:07 / عُدل: 13:50:39" itemprop="dateCreated datePublished" datetime="2022-05-30T13:34:07+08:00">2022-05-30</time>
             </span>
 
           
@@ -187,9 +187,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>tags:</p>
-<p>​		- 教程</p>
-<h2 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">net <span class="keyword">start</span> mysql#连接服务器</span><br><span class="line">net stop mysql#关闭服务器</span><br><span class="line"></span><br><span class="line">mysql <span class="operator">-</span>uroot <span class="operator">-</span>p#登陆，密码hyx14131413</span><br><span class="line"></span><br><span class="line">#查看数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES;#查看数据库，设有 test_db、db_test、db_test_db 三个数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">&#x27;test_db&#x27;</span>;#查看与 test_db 完全匹配的数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">&#x27;%test%&#x27;</span>;#查看名字中包含 test 的数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">&#x27;db%&#x27;</span>;#查看名字以 db 开头的数据库</span><br><span class="line"></span><br><span class="line">#创建数据库</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] new_database#数据库为.<span class="keyword">sql</span>文件，文件不存在时才会创建</span><br><span class="line">[<span class="keyword">DEFAULT</span>] <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8#设置字符集为utf8，不指定使用默认字符集</span><br><span class="line">[<span class="keyword">DEFAULT</span>] <span class="keyword">COLLATE</span> utf8_chinese_ci;#制定默认校对规则（简体中文，不区分大小写）</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> DATABASE new_database;#查看数据库的定义声明</span><br><span class="line"></span><br><span class="line">#修改数据库</span><br><span class="line"><span class="keyword">ALTER</span> DATABASE [数据库名] &#123; </span><br><span class="line">[ <span class="keyword">DEFAULT</span> ] <span class="type">CHARACTER</span> <span class="keyword">SET</span> <span class="operator">&lt;</span>字符集名<span class="operator">&gt;</span> <span class="operator">|</span></span><br><span class="line">[ <span class="keyword">DEFAULT</span> ] <span class="keyword">COLLATE</span> <span class="operator">&lt;</span>校对规则名<span class="operator">&gt;</span>&#125;</span><br><span class="line"></span><br><span class="line">#删除数据库</span><br><span class="line"><span class="keyword">DROP</span> DATABASE [IF <span class="keyword">EXISTS</span>] new_database#删除new_database数据库，无法恢复，删除前注意备份</span><br><span class="line"></span><br><span class="line">#选择数据库</span><br><span class="line">USE new_database</span><br></pre></td></tr></table></figure>
+          <h2 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">net <span class="keyword">start</span> mysql#连接服务器</span><br><span class="line">net stop mysql#关闭服务器</span><br><span class="line"></span><br><span class="line">mysql <span class="operator">-</span>uroot <span class="operator">-</span>p#登陆，密码hyx14131413</span><br><span class="line"></span><br><span class="line">#查看数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES;#查看数据库，设有 test_db、db_test、db_test_db 三个数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">&#x27;test_db&#x27;</span>;#查看与 test_db 完全匹配的数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">&#x27;%test%&#x27;</span>;#查看名字中包含 test 的数据库</span><br><span class="line"><span class="keyword">SHOW</span> DATABASES <span class="keyword">LIKE</span> <span class="string">&#x27;db%&#x27;</span>;#查看名字以 db 开头的数据库</span><br><span class="line"></span><br><span class="line">#创建数据库</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] new_database#数据库为.<span class="keyword">sql</span>文件，文件不存在时才会创建</span><br><span class="line">[<span class="keyword">DEFAULT</span>] <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8#设置字符集为utf8，不指定使用默认字符集</span><br><span class="line">[<span class="keyword">DEFAULT</span>] <span class="keyword">COLLATE</span> utf8_chinese_ci;#制定默认校对规则（简体中文，不区分大小写）</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> DATABASE new_database;#查看数据库的定义声明</span><br><span class="line"></span><br><span class="line">#修改数据库</span><br><span class="line"><span class="keyword">ALTER</span> DATABASE [数据库名] &#123; </span><br><span class="line">[ <span class="keyword">DEFAULT</span> ] <span class="type">CHARACTER</span> <span class="keyword">SET</span> <span class="operator">&lt;</span>字符集名<span class="operator">&gt;</span> <span class="operator">|</span></span><br><span class="line">[ <span class="keyword">DEFAULT</span> ] <span class="keyword">COLLATE</span> <span class="operator">&lt;</span>校对规则名<span class="operator">&gt;</span>&#125;</span><br><span class="line"></span><br><span class="line">#删除数据库</span><br><span class="line"><span class="keyword">DROP</span> DATABASE [IF <span class="keyword">EXISTS</span>] new_database#删除new_database数据库，无法恢复，删除前注意备份</span><br><span class="line"></span><br><span class="line">#选择数据库</span><br><span class="line">USE new_database</span><br></pre></td></tr></table></figure>
 
 <h2 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#创建表</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> website (</span><br><span class="line">    id      <span class="type">INT</span>              <span class="keyword">NOT</span> <span class="keyword">NULL</span>   AUTO_INCREMENT,#id列，<span class="type">int</span>数据类型,非空，自动增长序列</span><br><span class="line">    name    <span class="type">VARCHAR</span>(<span class="number">20</span>)      <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    url     <span class="type">VARCHAR</span>(<span class="number">30</span>)                 <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,#设置默认值</span><br><span class="line">    age     TINYINT UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    alexa   <span class="type">INT</span> UNSIGNED     <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    uv      <span class="type">FLOAT</span>                       <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">    country <span class="type">CHAR</span>(<span class="number">3</span>)          <span class="keyword">NOT</span> <span class="keyword">NULL</span>   <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (`id`)#设置主键</span><br><span class="line">    <span class="keyword">UNIQUE</span> (<span class="string">&#x27;url&#x27;</span>)</span><br><span class="line">);</span><br><span class="line">#查询表的结构</span><br><span class="line"><span class="keyword">DESC</span> website;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*表约束</span></span><br><span class="line"><span class="comment">NOT NULL：指示某列不能存储 NULL 值</span></span><br><span class="line"><span class="comment">UNIQUE：保证某列的每行必须有唯一的值</span></span><br><span class="line"><span class="comment">PRIMARY KEY：NOT NULL 和 UNIQUE 的结合</span></span><br><span class="line"><span class="comment">FOREIGN KEY：保证一个表中的数据匹配另一个表中的值的参照完整性</span></span><br><span class="line"><span class="comment">CHECK：保证列中的值符合指定的条件</span></span><br><span class="line"><span class="comment">DEFAULT：规定没有给列赋值时的默认值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">#删除表</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> webiste;</span><br><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> table_name#删除表内数据</span><br><span class="line"></span><br><span class="line">#表重命名</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> website RENAME <span class="keyword">TO</span> tb_website;</span><br><span class="line">RENAME website <span class="keyword">TO</span> tb_website;</span><br><span class="line">#修改表约束，（在表名后需要加数据类型）</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName MODIFY attributes datatype Constraints</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> (attribute)#设置<span class="keyword">UNIQUE</span>约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName <span class="keyword">DROP</span> INDEX (attribute)#取消<span class="keyword">UNIQUE</span>约束</span><br><span class="line"><span class="keyword">FOREIGN</span> KEY (P_Id) <span class="keyword">REFERENCES</span> Persons(P_Id)<span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE #设置外键<span class="comment">--级联删除</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Orders <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (P_Id) <span class="keyword">REFERENCES</span> Persons(P_Id)#设置外键</span><br><span class="line">#导入表,从D:<span class="operator">/</span>downloads中导入access_log表</span><br><span class="line"> SOURCE D:<span class="operator">/</span>downloads<span class="operator">/</span>access_log.sql;</span><br></pre></td></tr></table></figure>
 
@@ -263,9 +261,9 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Publicado el</span>
+              <span class="post-meta-item-text">نُشر في</span>
 
-              <time title="Creado por: 2022-05-30 12:50:33" itemprop="dateCreated datePublished" datetime="2022-05-30T12:50:33+08:00">2022-05-30</time>
+              <time title="أُنشأ: 2022-05-30 12:50:33" itemprop="dateCreated datePublished" datetime="2022-05-30T12:50:33+08:00">2022-05-30</time>
             </span>
 
           
@@ -351,10 +349,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Tabla de contenidos
+          المحتويات
         </li>
         <li class="sidebar-nav-overview">
-          Inicio
+          عام
         </li>
       </ul>
 
@@ -374,8 +372,12 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">2</span>
-          <span class="site-state-item-name">entradas</span>
+          <span class="site-state-item-name">المقالات</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">الوسوم</span>
       </div>
   </nav>
 </div>
@@ -407,7 +409,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">BraveUNow</span>
 </div>
-  <div class="powered-by">Creado mediante <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
         
