@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-06-01T15:59:38.156Z</updated>
+  <updated>2022-06-01T16:29:43.058Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://example.com/2022/05/30/markdownRender/"/>
     <id>http://example.com/2022/05/30/markdownRender/</id>
     <published>2022-05-30T14:19:27.000Z</published>
-    <updated>2022-06-01T15:59:38.156Z</updated>
+    <updated>2022-06-01T16:29:43.058Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>*[HTML]: 超文本标记语言</p><p>:)</p><p>参考文献[^1]</p><p>++下划线++</p><span id="more"></span><p>==标记==</p><p>H<sub>2</sub>O</p><p>X<sup>2</sup></p><p>未选：<code>- [ ]</code> 选中：<code>- [x]</code></p><p>+++ <strong>点击折叠</strong></p><p>这是被隐藏的内容</p><p>+++</p><p><span class="math inline">\(x^2+y^2=3\)</span></p><p><span class="math display">\[x^2-y^2=1\]</span></p><p>::: tips <strong>提示</strong> 这是一个提示 :::</p><p>::: warning <strong>注意</strong> 这是一个警告 :::</p><p>::: danger <strong>警告</strong> 这是一个危险信号 :::</p><p>::: success <strong>成功</strong> 这是一个成功信号 :::</p>]]></content>
+    <content type="html"><![CDATA[<hr><p>*[HTML]: 超文本标记语言</p><p>:)</p><p>参考文献[^1]</p><p>++下划线++</p><span id="more"></span><p>==标记==</p><p>H<sub>2</sub>O</p><p>X<sup>2</sup></p><p>未选：<code>- [ ]</code> 选中：<code>- [x]</code></p><p>+++ <strong>点击折叠</strong> 这是被隐藏的内容</p><p>+++</p><p><span class="math inline">\(x^2+y^2=3\)</span></p><p><span class="math display">\[x^2-y^2=1\]</span></p><p>::: tips <strong>提示</strong> 这是一个提示 :::</p><p>::: warning <strong>注意</strong> 这是一个警告 :::</p><p>::: danger <strong>警告</strong> 这是一个危险信号 :::</p><p>::: success <strong>成功</strong> 这是一个成功信号 :::</p>]]></content>
     
     
     <summary type="html">&lt;hr&gt;
