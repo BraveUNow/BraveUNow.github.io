@@ -79,9 +79,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="BraveUNow's hut" type="application/atom+xml">
-
+<!-- hexo injector head_end end -->
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="BraveUNow's hut" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/04/%E9%9B%86%E5%90%88%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/04/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/danxia.jpg">
@@ -207,7 +207,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/06/04/%E9%9B%86%E5%90%88%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">几何角度看线性规划</a>
+            <a href="/2022/06/04/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">几何角度看线性规划</a>
         </h2>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-06-04 13:43:36 / 修改时间：16:14:01" itemprop="dateCreated datePublished" datetime="2022-06-04T13:43:36+08:00">2022-06-04</time>
+              <time title="创建时间：2022-06-04 13:43:36 / 修改时间：17:51:32" itemprop="dateCreated datePublished" datetime="2022-06-04T13:43:36+08:00">2022-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,11 +242,11 @@
 
       
           <h1 id="几何角度看线性规划">几何角度看线性规划</h1>
-<p>最近在阅读Dimitris Bertsimas和John N. Tsitsiklis写的Introduction to linear optimization，学习过程中发现很多基本概念及其推导在我之前学运筹学的时候都忽视了，我学习运筹学时用的是清华大学出版社的《运筹学》第四版，这本书虽然我觉得写得不错，但由于需要介绍的知识太多，很多基本概念或细节没有深入介绍，相信很多人学习这本书的感受跟我一样(<span class="github-emoji"><span>😓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f613.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>)。因此，在学习过程中，我也希望将这些内容分享给大家。</p>
-<p>文章的主题为从几何角度看线性规划，内容包括线性规划的一些术语（多面体、极点等）介绍和一些性质推导，阅读本章需要有一些线性代数基础（不需要很多）。由于内容有点多，可能需要分好几节来进行介绍(作者本人也在一边看一边学<span class="github-emoji"><span>😂</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>)，作者自己也只是一个本科生，全凭个人兴趣进行分享，如果有什么地方讲得不对也希望大家能纠正。本章所有内容基于Introduction to linear optimization第二章，图片使用GeoGebra进行绘制。</p>
+<p>最近在阅读Dimitris Bertsimas和John N. Tsitsiklis写的Introduction to linear optimization，学习过程中发现很多基本概念及其推导在我之前学运筹学的时候都忽视了，我学习运筹学时用的是清华大学出版社的《运筹学》第四版，这本书虽然我觉得写得不错，但由于需要介绍的知识太多，很多基本概念或细节没有深入介绍，相信很多人学习这本书的感受跟我一样。因此，在学习过程中，我也希望将这些内容分享给大家。</p>
+<p>文章的主题为从几何角度看线性规划，内容包括线性规划的一些术语（多面体、极点等）介绍和一些性质推导，阅读本章需要有一些线性代数基础（不需要很多）。由于内容有点多，可能需要分好几节来进行介绍(作者本人也在一边看一边学<span class="github-emoji"><span>😂</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>)，作者自己也只是一个本科生，全靠个人兴趣进行分享(可能很久才更一次<span class="github-emoji"><span>👀</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f440.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>)，如果有什么地方讲得不对也希望大家能纠正。本章所有内容基于Introduction to linear optimization第二章，图片使用GeoGebra进行绘制。</p>
 <h2 id="多面体和凸集">多面体和凸集</h2>
 <h3 id="多面体">多面体</h3>
-<p>在介绍多面体(polyhedra)之前，需要先引入超平面(hyperplane)和半空间(halfspace)的概念。假设<span class="math inline">\(a\)</span>是<span class="math inline">\(R^n\)</span>内的一个向量,<span class="math inline">\(b\)</span>是一个标量，则：</p>
+<p>在介绍多面体(polyhedron)之前，需要先引入超平面(hyperplane)和半空间(halfspace)的概念。假设<span class="math inline">\(a\)</span>是<span class="math inline">\(R^n\)</span>内的一个向量,<span class="math inline">\(b\)</span>是一个标量，则：</p>
 <ul>
 <li><strong>超平面</strong>为空间中的一个集合<span class="math inline">\(\{x\in R^n\vert a'x=b\}\)</span></li>
 <li><strong>半空间</strong>为空间中的一个集合<span class="math inline">\(\{x\in R^n\vert a'x\ge b\}\)</span></li>
@@ -288,6 +288,47 @@
 <p><strong>证明</strong>: 设S是向量<span class="math inline">\(x^1,\dots,x^k\)</span>的凸包，令<span class="math inline">\(y=\sum_{i=1}^k\varsigma_ix^i, z=\sum_{i=1}^k\theta_ix^i,\sum_{i=1}^k\varsigma_i=1,\sum_{i=1}^k\theta_i=1\)</span>，根据凸包定义, <span class="math inline">\(y,z\)</span>都属于<span class="math inline">\(S\)</span>，则 <span class="math display">\[
 \lambda y+(1-\lambda)z=\lambda\sum_{i=1}^k\varsigma_ix^i+(1-\lambda)\sum_{i=1}^k\theta_ix^i=\sum_{i=1}^k(\lambda\varsigma_i+(1-\lambda)\theta_i)x_i
 \]</span> 显然<span class="math inline">\(\lambda\varsigma_i+(1-\lambda)\theta_i\)</span>都是非负的且和为1，因此，<span class="math inline">\(\lambda y+(1-\lambda)z\)</span>是<span class="math inline">\(x_i\)</span>的一个凸组合，根据凸包定义一定属于<span class="math inline">\(S\)</span>。因此，可以证明凸包的凸性。</p>
+<h2 id="极点顶点和基可行解">极点、顶点和基可行解</h2>
+<p>大家学习单纯形法的过程中应该都了解过一个线性规划的最优解一定出现在可行域的顶点处。但什么是可行域的顶点，Bertsimas的书中给出了3中不同的定义方式，本节将一一介绍。</p>
+<h3 id="极点extreme-point">极点(extreme point)</h3>
+<p>多面体的极点即为无法用多面体任何其他两个元素的凸组合表示的点。它的定义如下：</p>
+<ul>
+<li>令<span class="math inline">\(P\)</span>为一个多面体, 向量<span class="math inline">\(x\in P\)</span>是一个极点，如果我们找不到两个向量<span class="math inline">\(y,z\in P\)</span>和标量<span class="math inline">\(\lambda\)</span>，可以使<span class="math inline">\(x=\lambda y+(1-\lambda)z\)</span></li>
+</ul>
+<p>用通俗的话来讲，就是如果对于多面体上的一个点不在多面体内其他任何两个点连接而成的线段上，则这个点就是多面体的一个极点。</p>
+<p><img src="C:/Users/64310/Pictures/线性规划/extreme_point.png" style="zoom:50%;"></p>
+<p>上图中的x是一个极点，因为<span class="math inline">\(y\notin P\)</span>，而w不是一个极点，因为它可以表示为<span class="math inline">\(v,u\)</span>的凸组合，且<span class="math inline">\(v\in P, u\in P\)</span></p>
+<h3 id="顶点vertex">顶点（vertex)</h3>
+<p>多面体的的顶点可以定义为关于可行域P的一些线性规划问题的唯一最优解。它的定义如下：</p>
+<ul>
+<li>令<span class="math inline">\(P\)</span>为一个多面体，向量<span class="math inline">\(x\in P\)</span>是P的一个顶点如果存在一些<span class="math inline">\(c\)</span>可以使<span class="math inline">\(c'x\lt c'y\)</span>，其中<span class="math inline">\(y\in P, y\ne x\)</span></li>
+</ul>
+<p>上述定义通俗理解就是对于点<span class="math inline">\(x\)</span>，如果存在一条经过它的一条超平面可以令<span class="math inline">\(P\)</span>中所有点都在超平面的同一侧，且只有点<span class="math inline">\(x\)</span>在超平面上，则<span class="math inline">\(x\)</span>就是多面体的一个顶点。</p>
+<h3 id="基可行解basic-feasible-solution">基可行解(basic feasible solution)</h3>
+<p>根据多面体的定义，一个多面体<span class="math inline">\(P\subset R^n\)</span>可以用一系列线性等式和不等式约束表示： <span class="math display">\[
+a_i'x\ge b_i\quad i\in M_1\\
+a_i'x\le b_i\quad i\in M_2\\
+a_i'x= b_i\quad i\in M_3
+\]</span> 每个<span class="math inline">\(a_i\)</span>是<span class="math inline">\(R^n\)</span>中的一个向量, <span class="math inline">\(b_i\)</span>是一个标量。如果对于向量<span class="math inline">\(x^*\)</span>，存在某些<span class="math inline">\(i\in M_1,M_2,M_3\)</span>满足<span class="math inline">\(a_i'x^*=b_i,\)</span>，则称对应的约束<span class="math inline">\(i\)</span>为在<span class="math inline">\(x^*\)</span>上的有效约束(active/binding constraints)，否则称为无效约束，显然<span class="math inline">\(M_3\)</span>中的约束都是有效约束。根据线性代数的基础知识，如果一个线性规划问题由n个有效约束，且这n个约束是线性无关(linearly independent)的，则这个问题只有唯一解。</p>
+<p>令<span class="math inline">\(x^*\)</span>为<span class="math inline">\(R^n\)</span>中的一个点，<span class="math inline">\(I=\{i\vert a_i'x^*=b_i\}\)</span>是在<span class="math inline">\(x^*\)</span>上的有效约束的索引，则下面三种表达是等价的：</p>
+<ol type="1">
+<li><p>集合<span class="math inline">\(\{a_i\vert i\in I\}\)</span>内存在n个线性无关的向量</p></li>
+<li><p>向量<span class="math inline">\(a_i,i\in I\)</span>张成的向量空间(span)是<span class="math inline">\(R^n\)</span>，即<span class="math inline">\(R^n\)</span>内任意元素都可以表示为<span class="math inline">\(a_i\)</span>的线性组合</p></li>
+<li><p>线性方程组<span class="math inline">\(a_i'x=b_i,i\in I\)</span>有唯一解</p></li>
+</ol>
+<p><strong>证明：</strong></p>
+<p><strong>表达1和表达2</strong>：如果向量<span class="math inline">\(a_i,i\in I\)</span>的span是<span class="math inline">\(R^n\)</span>，则由线性代数的知识可得这些向量中有n个向量构成了<span class="math inline">\(R^n\)</span>的一个基，这n个向量一定是线性无关的。同样，如果集合<span class="math inline">\(\{a_i\vert i\in I\}\)</span>内存在n个线性无关的向量，则这n个向量作为基张成的向量空间一定等于<span class="math inline">\(R^n\)</span>，即<span class="math inline">\(R^n\)</span>中的任何元素都可以表示为这n个向量的线性组合。</p>
+<p><strong>表达2和表达3</strong>：如果线性方程组<span class="math inline">\(a_i'x=b_i,i\in I\)</span>有多个解，如<span class="math inline">\(x^1,x^2\)</span>，令非零向量<span class="math inline">\(d=x^1-x^2\)</span>, 则<span class="math inline">\(a_i'd=a_i'(x^1-x^2)=0\)</span>，即<span class="math inline">\(d\)</span>与所有<span class="math inline">\(a_i\)</span>正交，因此无法用<span class="math inline">\(a_i\)</span>的线性组合表示，从而不在span(<span class="math inline">\(a_i,i\in I\)</span>)内，说明span(<span class="math inline">\(a_i,i\in I\)</span>)不包括整个<span class="math inline">\(R^n\)</span>(至少不包括<span class="math inline">\(d\)</span>)。同样，如果span(<span class="math inline">\(a_i,i\in I\)</span>)的不等于<span class="math inline">\(R^n\)</span>，存在一个非零向量<span class="math inline">\(d\)</span>与span(<span class="math inline">\(a_i,i\in I\)</span>)正交，如果存在<span class="math inline">\(x\)</span>满足<span class="math inline">\(a_i'x=b_i,i\in I\)</span>，则<span class="math inline">\(a_i'(x+d)=b_i,i\in I\)</span>也一定满足，因此该线性方程组有多个解。</p>
+<p>因此，如果对于一个有n个变量的线性规划问题，如果我们能找到n个有效约束则能唯一确定一个解。因此，这里引出了基解(basic solution)和基可行解的概念(basic feasible solution)。对于一个由一系列等式约束和不等式约束定义的多面体<span class="math inline">\(P\)</span>, 令<span class="math inline">\(x^*\)</span>为<span class="math inline">\(R^n\)</span>中的一个向量。</p>
+<ul>
+<li>所有在<span class="math inline">\(x^*\)</span>的有效约束中有<span class="math inline">\(n\)</span>个约束是线性无关的，则求解线性方程组得到的<span class="math inline">\(x^*\)</span>是一个<strong>基解</strong>.</li>
+<li>如果<span class="math inline">\(x^*\)</span>是一个基解，且满足所有的约束，则是一个基可行解。</li>
+</ul>
+<p>对于一个线性规划问题，假设有n个变量，m个约束，其中有k个线性无关的等式约束，我们可以中所有不等式约束中寻找(n-k)个约束令其满足等式约束，这样就可以得到n个有效约束。</p>
+<p><img src="C:/Users/64310/Pictures/线性规划/basic_solution.png" style="zoom:15%;"></p>
+<p>假设线性规划问题的约束包括<span class="math inline">\(c_1:x+y\le 2;c_2:x-y\ge-1;c_3:x\ge0;c_4:y\ge0\)</span>，可行域如上图阴影部分区域所示，显然图中所有点都是都是基解，因为他们至少满足了两条线性无关的有效约束，如点E存在有效约束<span class="math inline">\(c_2,c_4\)</span>。但只有C、D、E、F是基可行解。</p>
+<h3 id="极点顶点基可行解的等价证明">极点、顶点、基可行解的等价证明</h3>
+<p>以上三种概念虽然表达方式不同，但其实是等价的，并可以互换使用。本节将进行等价性的证明。</p>
 
       
     </div>
