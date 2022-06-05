@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #8109a3;
+  background: #ffad6e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2678,7 +2678,7 @@ mjx-container + br {
   }
 }
 body {
-  background-image: url("/images/girl.jpg");
+  background-image: url("/images/wallpaper_engine.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
