@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="以前写的一个笔记，拿来填充一下博客内容。。 1.算法推导 对于一个线性规划问题： \[ \begin{align*} \text{Minimize}\quad  c^Tx+f^Ty\\ \text{s.t. }\quad Ax+By&#x3D;b\\ x\ge0,y\in Y\subseteq \mathbb{R}^q \end{align*} \]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Benders分解">
+<meta property="og:url" content="http://example.com/2022/06/05/Benders%E5%88%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="BraveUNow&#39;s hut">
+<meta property="og:description" content="以前写的一个笔记，拿来填充一下博客内容。。 1.算法推导 对于一个线性规划问题： \[ \begin{align*} \text{Minimize}\quad  c^Tx+f^Ty\\ \text{s.t. }\quad Ax+By&#x3D;b\\ x\ge0,y\in Y\subseteq \mathbb{R}^q \end{align*} \]">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/64310/Desktop/GLRP/exact%20algorithm/benders%20decomposition/feasible%20domain.png">
+<meta property="og:image" content="c:/Users/64310/Desktop/GLRP/exact%20algorithm/benders%20decomposition/feasible%20domain1.png">
+<meta property="article:published_time" content="2022-06-05T12:11:10.000Z">
+<meta property="article:modified_time" content="2022-06-05T12:32:45.663Z">
+<meta property="article:author" content="BraveUNow">
+<meta property="article:tag" content="线性规划, 求解算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/64310/Desktop/GLRP/exact%20algorithm/benders%20decomposition/feasible%20domain.png">
+
+<link rel="canonical" href="http://example.com/2022/06/05/Benders%E5%88%86%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Benders分解 | BraveUNow's hut</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="BraveUNow's hut" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BraveUNow's hut</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/05/Benders%E5%88%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/danxia.jpg">
+      <meta itemprop="name" content="BraveUNow">
+      <meta itemprop="description" content="洪宇新的个人博客，主要分享自己的一些学习笔记和生活经历">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BraveUNow's hut">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Benders分解
+        </h1>
+
+        <div class="post-meta">
+	
+	
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-05 20:11:10 / 修改时间：20:32:45" itemprop="dateCreated datePublished" datetime="2022-06-05T20:11:10+08:00">2022-06-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%AD%B9%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">运筹学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>以前写的一个笔记，拿来填充一下博客内容。。</p>
+<h2 id="算法推导">1.算法推导</h2>
+<p>对于一个线性规划问题： <span class="math display">\[
+\begin{align*}
+\text{Minimize}\quad 
+c^Tx+f^Ty\\
+\text{s.t. }\quad Ax+By=b\\
+x\ge0,y\in Y\subseteq \mathbb{R}^q
+\end{align*}
+\]</span> <span id="more"></span></p>
+<p>当y有一个比较复杂的约束（如为整数），而x为的约束较为简单（线性约束）时，模型求解computational cost会难以忍受，如果令y固定，求解x，可以缩小问题的规模，因此考虑将原模型分解成2个较小的子模型，当固定y时，相当于求一个只有变量x的子模型，令q(y)为： <span class="math display">\[
+\begin{align*}
+q(y)=\quad
+\text{Minimize}\quad c^Tx\\
+\text{s.t.}\quad Ax=b-By\\
+x\ge0
+\end{align*}
+\]</span> 则原问题可以表示为： <span class="math display">\[
+\begin{align*}
+\text{Minimize}\quad 
+f^Ty+q(y)\\
+\text{s.t. }\quad y\in Y
+\end{align*}
+\]</span> 考虑到y取不同的值，q(y)的可行域发生变化，可以将子模型q(y)转化成对偶形式： <span class="math display">\[
+\begin{align*}
+\text{Maximize}\quad \alpha^T (b-By)\\
+\text{s.t. }\quad A^T\alpha\le c\\
+\alpha\text{ is unrestricted}
+\end{align*}
+\]</span> 将该模型作为子问题(subproblem), 注意到不论y的值怎么发生变化，子问题的约束不变，也就是说子问题的可行域不随输入y的变化而变化，y的不同只会影响子问题的目标值。子问题的可行域是一个<strong>多面体(polyhedron)</strong>，该多面体有<span class="math inline">\(I(\alpha_p^1,\alpha_p^2,\cdots,\alpha_p^I)\)</span>个<strong>极点(extreme points)</strong>,<span class="math inline">\(J(\alpha_r^1,\alpha_r^2,\cdots,\alpha_r^J)\)</span>个<strong>极方向(extreme rays)</strong>，对于多面体内任何一点都可以由极点和极方向的组合表示<span class="math inline">\(\forall \alpha=\{\sum\limits_i^I\lambda_i\alpha_p^i+\sum\limits_j^J\mu_j\alpha_r^j\mid\sum\limits_i^I\lambda_i=1,\lambda\ge0,\mu\ge0\}\)</span>。</p>
+<ul>
+<li><p>若可行域非空且无界，最优解一定可以由可行域的某个极方向表示。</p></li>
+<li><p>若可行域非空且有界，最优解一定在可行域的某个极点上。</p></li>
+<li><p>若可行域为空集，其对偶问题无界，则原问题也无界，模型目标值可以取到无穷小，失去求解意义。</p></li>
+</ul>
+<p>因此，原问题可以转化成： <span class="math display">\[
+\begin{align*}
+\text{Minimize}\quad 
+f^Ty+max(\alpha^T (b-By))\\
+\text{s.t. }\quad A^T\alpha\le c\\
+y\in Y
+\end{align*}
+\]</span> 等价于: <span class="math display">\[
+\begin{align*}
+\text{(MP)=Minimize}\quad 
+f^Ty+z\\
+\text{s.t. }\quad (\alpha_r^j)^T(b-By)\le0\quad j=1,2,\cdots,J\\
+(\alpha_p^i)^T(b-By)\le z\quad i =1,2,\cdots,I\\ \\ \\
+\text{(SP)=Maximize}\quad \alpha^T (b-By)\\
+\text{s.t. }\quad A^T\alpha\le c\\
+\alpha\text{ is unrestricted}
+\end{align*}
+\]</span> 将该模型作为主问题(master problem)，由于子问题的可行域可以有很多个极点和极方向，全部列举出来并不现实（也并不需要），因此我们可以先将主问题的约束全部松弛掉，形成限制主问题(restrict master problem)，并在每次迭代过程中逐步添加约束，即在满足最优性的条件下追求原问题的可行性，当限制主问题的z值与子问题的目标值相等时，主问题的所有约束都得到了满足</p>
+<ul>
+<li><p>对于给定的y值，任意极点乘以(b-By)都小于子问题的目标值=z, <span class="math inline">\((\alpha_p^i)^T(b-By)\le z\)</span></p></li>
+<li><p>对于给定的y值，没有极方向与y代表的向量小于90°，即（<span class="math inline">\(\alpha_r^j)^T(b-By)\le0\)</span>)，若小于90°，子问题的目标值可以无限大（<span class="math inline">\(\mid\alpha_r^j\mid\)</span>可以取任意值),子问题无界，其对偶问题无可行解，原问题也无可行解</p></li>
+</ul>
+<p>首先，求解RMP，得到对应的<span class="math inline">\((y^*,z^*)\)</span>。对于给定<span class="math inline">\(y*\)</span>，若SP得到无界解，说明对于该无界解对应的可行解是一个极方向，且此时对于该极方向j，与向量(b-By)的夹角小于90°，<span class="math inline">\((\alpha_r^j)^T(b-By)\ge0\)</span>，因此将这个极方向添加进RMP（add Benders feasibility cuts:<span class="math inline">\(\alpha_r^T(b-By)\le 0\)</span>, <span class="math inline">\(\alpha_r\)</span> is the extreme ray corresponding to current solution)；若SP得到最优解，且最优解的目标值大于<span class="math inline">\(z^*\)</span>，则说明存在某个极点<span class="math inline">\(\alpha_p^i\)</span>,代入目标函数得到的值大于<span class="math inline">\(z^*\)</span>，则违背了MP的约束<span class="math inline">\((\alpha_p^i)^T(b-By)\le z\)</span>,因此将这个极点添加进RMP（add Benders optimality cuts:<span class="math inline">\(\alpha_p^T(b-By)\le z\)</span>, <span class="math inline">\(\alpha_p\)</span> is the extreme point corresponding to current solution),这样求解RMP得到的(b-By)与该极点向量相乘一定小于求解得到的<span class="math inline">\(z^*\)</span>；当最优解的目标值等于<span class="math inline">\(z^*\)</span>时，说明对于所有极点，与向量(b-By)的内积都小于<span class="math inline">\(z^*\)</span>，符合MP的约束，也就是说RMP得到的最优解是MP的可行解，且是MP的最优解。（松弛问题的可行域大于原问题的可行域，其最优解的目标值是原问题的下界，如果松弛问题的最优解可行，一定是原问题的最优解），这样MP也就得到了最优的解。</p>
+<p><img src="C:/Users/64310/Desktop/GLRP/exact algorithm/benders decomposition/feasible domain.png" alt="feasible domain" style="zoom:30%;"></p>
+<p>设求解RMP得到y的最优解在多面体极点B上，求解SP，得到最优点在极点E上，目标值为z，则对于<span class="math inline">\(\alpha\)</span>可行域任意极点<span class="math inline">\(\alpha_p^i\)</span>，<span class="math inline">\((\alpha_p^i)^T(b-By)\le z\)</span>，此时添加新的极点约束进入RMP，相当于缩小y的可行域，且缩小后的y可行域一定包含点B（因为B是符合所有极点的约束的），则<span class="math inline">\(y_{new}\)</span>的最优一定也在B，SP的最优一定还在F，对结果没有影响，可以不用添加该cut。</p>
+<p><img src="C:/Users/64310/Desktop/GLRP/exact algorithm/benders decomposition/feasible domain1.png" alt="feasible domain1" style="zoom:30%;"></p>
+<h2 id="伪代码">2.伪代码</h2>
+<p><span class="math display">\[
+\begin{align*}
+&amp;\mbox{\textbf {Classic Benders Decomposition}}\\
+&amp;\rule{20.3cm}{0.05em}\\
+&amp;\mbox{Indentify the primal MP and SP}\\
+&amp;\mbox{repeat:}\\
+&amp;\quad \mbox{Solve MP, get z}\\
+&amp;\quad \mbox{change SP's objective funciton}\\
+&amp;\quad \mbox{Solve SP}\\
+&amp;\quad \mbox{if SP.STATUS=OPTIMAL:}\\
+&amp;\quad\quad \mbox{if SP.obj=z:}\\
+&amp;\quad\quad\quad \mbox{stop}\\
+&amp;\quad\quad \mbox{else:}\\
+&amp;\quad\quad\quad \mbox{add Benders optimality cuts:}\alpha_p^T(b-By)\le z\\
+&amp;\quad \mbox{else:}\\
+&amp;\quad\quad\quad \mbox{add Benders feasibility cuts:}\alpha_r^T(b-By)\le 0\\
+\end{align*}
+\]</span></p>
+<h2 id="算法实例">3.算法实例</h2>
+<p>本实例来自Wiley Encyclopedia of Operations Research and Management Science的一个章节，原PDF见<a target="_blank" rel="noopener" href="http://hacivat.ie.boun.edu.tr/~taskin/pdf/taskin_benders.pdf">Benders Decompositon</a> 对MIP问题:. <span class="math display">\[
+\begin{align*}
+min\quad &amp;x_1+x_2+x_3+x_4+x_5+7y_1+7y_2+7y_3+7y_4+7y_5\\
+\text{s.t. }\quad 
+&amp;x_1+x_4+x_5=8\\
+&amp;x_2+x_5=3\\
+&amp;x_3+x_4=5\\
+&amp;x_1\le 8y_1\\
+&amp;_2\le 3y_2\\
+&amp;x_3\le 5y_3\\
+&amp;x_4\le 5y_4\\
+&amp;x_5\le 3y_5\\
+&amp;x_1,x_2,x_3,x_4,x_5\ge0,y_1,y_2,y_3,y_4,y_5\in \{0,1\}
+\end{align*}
+\]</span></p>
+<p><strong>step1.</strong> 识别MP和SP, 记<span class="math inline">\(\overline{(b-By)}=(8,3,5,8y_1,3y_2,5y_3,5y_4,3y_5)\)</span>: <span class="math display">\[
+\begin{align*}
+\text{(RMP)=Minimize}\quad 
+&amp;7y_1+7y_2+7y_3+7y_4+7y_5+z\\
+\text{s.t. }\quad &amp;z\ge0,y_1,y_2,y_3,y_4,y_5\in \{0,1\}\\ \\ \\
+\text{(SP)=Maximize}\quad &amp;8\alpha_1+3\alpha_2+5\alpha_3+8y_1\alpha_4+3y_2\alpha_5+5y_3\alpha_6+5y_4\alpha_7+3y_5\alpha_8\\
+\text{s.t. }\quad &amp;\alpha_1+\alpha_4\le1\\
+&amp;\alpha_2+\alpha_5\le1\\
+&amp;\alpha_3+\alpha_6\le1\\
+&amp;\alpha_1+\alpha_3+\alpha_7\le1\\
+&amp;\alpha_1+\alpha_2+\alpha_8\le1\\
+&amp;\alpha_1,\alpha_2,\alpha_3\text{ is unrestricted, }\alpha_4,\alpha_5,\alpha_6,\alpha_7,\alpha_8\le0
+\end{align*}
+\]</span></p>
+<p><strong>step2.</strong> 求解RMP, 得最优解为<span class="math inline">\(y^*=(0,0,0,0,0),z^*=0\)</span>, 将<span class="math inline">\(y^*\)</span>代入SP, 发现SP有无穷解, 且我们得到该解对应的极射线<span class="math inline">\((1,0,0,-1,0,0,-1,-1)\)</span>, 之后我们可以添加feasibility cut: <span class="math inline">\(8-8y_1-5y_4-3y_5\le0\)</span>,等价于<span class="math inline">\(8y_1+5y_4+3y_5\ge8\)</span></p>
+<p><strong>step3.</strong> 更新RMP,得最优解为<span class="math inline">\(y^*=(1,0,0,0,0),z^*=0\)</span>, SP仍然无界, 对应的极射线为<span class="math inline">\((0,1,1,0,-1,-1,-1,-1)\)</span>, 继续添加feasibility cut: <span class="math inline">\(3y_2+5y_3+5y_4+3y_5\ge8\)</span></p>
+<p><strong>step4.</strong> 更新RMP,得最优解为<span class="math inline">\(y^*=(0,0,0,1,1),z^*=0\)</span>, SP有最优解<span class="math inline">\(8&gt;z=0\)</span>, 对应的极点为<span class="math inline">\((1,0,0,0,0,0,0,0)\)</span>, 添加optimality cut: <span class="math inline">\(8\le z\)</span></p>
+<p><strong>step5.</strong> 更新RMP, 得最优解为 <span class="math inline">\(y^*=(0,0,0,1,1),z^*=8\)</span>, 当前的<span class="math inline">\(y^*\)</span>与上一次迭代相同, 因此SP的最优值一定为8, 等于当前的<span class="math inline">\(z^*\)</span>, 算法结束. 得到SP的对偶变量, 即原问题x的取值. 且最后的RMP为: <span class="math display">\[
+\begin{align*}
+\text{(RMP)=Minimize}\quad 
+&amp;7y_1+7y_2+7y_3+7y_4+7y_5+z\\
+\text{s.t. }\quad 
+&amp;8y_1+5y_4+3y_5\ge8\\
+&amp;3y_2+5y_3+5y_4+3y_5\ge8\\
+&amp;z\ge8\\
+&amp;z\ge0,y_1,y_2,y_3,y_4,y_5\in \{0,1\}
+\end{align*}
+\]</span> 最终结果为<span class="math inline">\(x=(0,0,0,5,3),y=(0,0,0,1,1)\)</span>, objective=22</p>
+<p>附Gurobi代码如下： </p><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gurobipy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">mp = Model()</span><br><span class="line">sp = Model()</span><br><span class="line"></span><br><span class="line">yNum = <span class="built_in">list</span>(np.arange(<span class="number">1</span>,<span class="number">6</span>))</span><br><span class="line">alphaNum = <span class="built_in">list</span>(np.arange(<span class="number">1</span>,<span class="number">9</span>))</span><br><span class="line"></span><br><span class="line">y = mp.addVars(yNum,obj=<span class="number">7</span>,vtype=GRB.BINARY,name=<span class="string">'y'</span>)</span><br><span class="line">z = mp.addVar(obj=<span class="number">1</span>,vtype=GRB.CONTINUOUS,name=<span class="string">'z'</span>)</span><br><span class="line"></span><br><span class="line">alpha = sp.addVars(alphaNum,vtype=GRB.CONTINUOUS,name=<span class="string">'alpha'</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> alphaNum:</span><br><span class="line">    <span class="keyword">if</span> i &lt;= <span class="number">3</span>:</span><br><span class="line">        alpha[i].lb = -GRB.INFINITY<span class="comment">#等于约束的对偶变量无约束</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        alpha[i].lb = -GRB.INFINITY<span class="comment">#最小化问题小于约束对偶变量小于0</span></span><br><span class="line">        alpha[i].ub = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">c1 = sp.addConstr(alpha[<span class="number">1</span>]+alpha[<span class="number">4</span>]&lt;=<span class="number">1</span>)</span><br><span class="line">c2 = sp.addConstr(alpha[<span class="number">2</span>]+alpha[<span class="number">5</span>]&lt;=<span class="number">1</span>)</span><br><span class="line">c3 = sp.addConstr(alpha[<span class="number">3</span>]+alpha[<span class="number">6</span>]&lt;=<span class="number">1</span>)</span><br><span class="line">c4 = sp.addConstr(alpha[<span class="number">1</span>]+alpha[<span class="number">3</span>]+alpha[<span class="number">7</span>]&lt;=<span class="number">1</span>)</span><br><span class="line">c5 = sp.addConstr(alpha[<span class="number">1</span>]+alpha[<span class="number">2</span>]+alpha[<span class="number">8</span>]&lt;=<span class="number">1</span>)</span><br><span class="line">sp.ModelSense = GRB.MAXIMIZE</span><br><span class="line"></span><br><span class="line">sp.setParam(GRB.Param.InfUnbdInfo,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    mp.optimize()</span><br><span class="line">    sp.setObjective(<span class="number">8</span>*alpha[<span class="number">1</span>]+<span class="number">3</span>*alpha[<span class="number">2</span>]+<span class="number">5</span>*alpha[<span class="number">3</span>]+<span class="number">8</span>*y[<span class="number">1</span>].x*alpha[<span class="number">4</span>]+ \</span><br><span class="line">                    <span class="number">3</span>*y[<span class="number">2</span>].x*alpha[<span class="number">5</span>]+<span class="number">5</span>*y[<span class="number">3</span>].x*alpha[<span class="number">6</span>]+<span class="number">5</span>*y[<span class="number">4</span>].x*alpha[<span class="number">7</span>]+<span class="number">3</span>*y[<span class="number">5</span>].x*alpha[<span class="number">8</span>])</span><br><span class="line">        <span class="comment">#得到(b-By),设定subproblem的目标函数</span></span><br><span class="line">    sp.optimize()</span><br><span class="line">    <span class="keyword">if</span> sp.status == GRB.OPTIMAL:</span><br><span class="line">        <span class="keyword">if</span> sp.objVal == z.x:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            mp.addConstr(<span class="number">8</span>*alpha[<span class="number">1</span>].x+<span class="number">3</span>*alpha[<span class="number">2</span>].x+<span class="number">5</span>*alpha[<span class="number">3</span>].x+<span class="number">8</span>*y[<span class="number">1</span>]*alpha[<span class="number">4</span>].x+ \</span><br><span class="line">                         <span class="number">3</span>*y[<span class="number">2</span>]*alpha[<span class="number">5</span>].x+<span class="number">5</span>*y[<span class="number">3</span>]*alpha[<span class="number">6</span>].x+<span class="number">5</span>*y[<span class="number">4</span>]*alpha[<span class="number">7</span>].x+<span class="number">3</span>*y[<span class="number">5</span>]*alpha[<span class="number">8</span>].x&lt;=z)</span><br><span class="line">                <span class="comment">#add optimality cut</span></span><br><span class="line">    <span class="keyword">elif</span> sp.status == GRB.UNBOUNDED:</span><br><span class="line">        ray = sp.UnbdRay<span class="comment">#obtain extreme ray</span></span><br><span class="line">        mp.addConstr(<span class="number">8</span>*ray[<span class="number">0</span>]+<span class="number">3</span>*ray[<span class="number">1</span>] + <span class="number">5</span>*ray[<span class="number">2</span>] + \</span><br><span class="line">                     <span class="number">8</span>*ray[<span class="number">3</span>]*y[<span class="number">1</span>] + <span class="number">3</span>*ray[<span class="number">4</span>]*y[<span class="number">2</span>] + <span class="number">5</span>*ray[<span class="number">5</span>]*y[<span class="number">3</span>] + \</span><br><span class="line">                     <span class="number">5</span>*ray[<span class="number">6</span>]*y[<span class="number">4</span>] + <span class="number">3</span>*ray[<span class="number">7</span>]*y[<span class="number">5</span>]&lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="comment">#add feasibility cut</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span> (SP_Dual.status)</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出变量值</span></span><br><span class="line">x = sp.getAttr(GRB.Attr.Pi,sp.getConstrs())<span class="comment">#x为sp对偶变量</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'x[%d]:%g'</span>%(i+<span class="number">1</span>,x[i]))</span><br><span class="line"><span class="keyword">for</span> v <span class="keyword">in</span> mp.getVars():</span><br><span class="line">    <span class="built_in">print</span>(v.varName,<span class="string">':'</span>,v.x)</span><br></pre></td></tr></tbody></table></figure><p></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E6%B1%82%E8%A7%A3%E7%AE%97%E6%B3%95/" rel="tag"># 线性规划, 求解算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/05/introduction/" rel="prev" title="欢迎来到BraveUNow的小屋">
+      <i class="fa fa-chevron-left"></i> 欢迎来到BraveUNow的小屋
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8E%A8%E5%AF%BC"><span class="nav-number">1.</span> <span class="nav-text">1.算法推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">2.伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">3.算法实例</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="BraveUNow"
+      src="/images/danxia.jpg">
+  <p class="site-author-name" itemprop="name">BraveUNow</p>
+  <div class="site-description" itemprop="description">洪宇新的个人博客，主要分享自己的一些学习笔记和生活经历</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/BraveUNow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;BraveUNow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:k10726@outlook.com" title="E-Mail → mailto:k10726@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/braveunow" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;braveunow" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BraveUNow</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
