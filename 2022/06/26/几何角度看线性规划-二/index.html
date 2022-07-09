@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.braveunow-hyx.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="标准型的多面体 ​ 一个标准型的多面体可以表示为\(P&#x3D;\{x\in R^n\vert Ax&#x3D;b,x\ge0\}\)，其中A是一个\(m\times n\)的矩阵，对应m个等式约束和n个变量，并假设m个约束是相互独立(这要求\(m\le n\)，事实上线性相关的约束可以被舍弃而不影响解的性质) ​ 上一章提到，一个基解是通过求解n个线性无关约束组成的线性方程组得到的，由于标准型的约束数量m不多于n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几何角度看线性规划(二)">
+<meta property="og:url" content="http://www.braveunow-hyx.xyz/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%BA%8C/index.html">
+<meta property="og:site_name" content="BraveUNow&#39;s hut">
+<meta property="og:description" content="标准型的多面体 ​ 一个标准型的多面体可以表示为\(P&#x3D;\{x\in R^n\vert Ax&#x3D;b,x\ge0\}\)，其中A是一个\(m\times n\)的矩阵，对应m个等式约束和n个变量，并假设m个约束是相互独立(这要求\(m\le n\)，事实上线性相关的约束可以被舍弃而不影响解的性质) ​ 上一章提到，一个基解是通过求解n个线性无关约束组成的线性方程组得到的，由于标准型的约束数量m不多于n">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/64310/Pictures/线性规划/synthesizeVector.png">
+<meta property="og:image" content="c:/Users/64310/Pictures/线性规划/degenerationSample.png">
+<meta property="article:published_time" content="2022-06-26T06:14:19.000Z">
+<meta property="article:modified_time" content="2022-07-09T08:57:02.287Z">
+<meta property="article:author" content="BraveUNow">
+<meta property="article:tag" content="线性规划">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/64310/Pictures/线性规划/synthesizeVector.png">
+
+<link rel="canonical" href="http://www.braveunow-hyx.xyz/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%BA%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>几何角度看线性规划(二) | BraveUNow's hut</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end -->
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="BraveUNow's hut" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BraveUNow's hut</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.braveunow-hyx.xyz/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/danxia.jpg">
+      <meta itemprop="name" content="BraveUNow">
+      <meta itemprop="description" content="BraveUNow的个人博客，主要分享自己的一些学习笔记和生活经历">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BraveUNow's hut">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          几何角度看线性规划(二)
+        </h1>
+
+        <div class="post-meta">
+	
+	
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-26 14:14:19" itemprop="dateCreated datePublished" datetime="2022-06-26T14:14:19+08:00">2022-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-09 16:57:02" itemprop="dateModified" datetime="2022-07-09T16:57:02+08:00">2022-07-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%AD%B9%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">运筹学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="标准型的多面体">标准型的多面体</h2>
+<p>​ 一个标准型的多面体可以表示为<span class="math inline">\(P=\{x\in R^n\vert Ax=b,x\ge0\}\)</span>，其中<strong>A</strong>是一个<span class="math inline">\(m\times n\)</span>的矩阵，对应m个等式约束和n个变量，并假设m个约束是相互独立(这要求<span class="math inline">\(m\le n\)</span>，事实上线性相关的约束可以被舍弃而不影响解的性质)</p>
+<p>​ 上一章提到，一个基解是通过求解n个线性无关约束组成的线性方程组得到的，由于标准型的约束数量m不多于n，为了获得一个基解，需要选择m-n个变量并令它们为0，即令这m-n个变量对应的约束<span class="math inline">\(x_i\ge0\)</span>成为有效约束。其中对于这m-n个约束的选择并不是随意的。</p>
+<p><strong>定理</strong>：对于一个标准型的多面体，向量<span class="math inline">\(x\in R^n\)</span>是一个基解当且仅当有<span class="math inline">\(Ax=b\)</span>，且存在索引<span class="math inline">\(B(1),\dots,B(m)\)</span>令：</p>
+<ol type="1">
+<li>列<span class="math inline">\(A_{B(1)},\dots, A_{B(m)}\)</span>相互线性独立</li>
+<li>如果<span class="math inline">\(i\neq B(1),\dots,B(m)\)</span>，则<span class="math inline">\(x_i=0\)</span></li>
+</ol>
+<p><strong>证明</strong>：假设<span class="math inline">\(x\in R^n\)</span>，且存在<span class="math inline">\(B(1),\dots,B(m)\)</span>满足定理的表述，则有 <span class="math display">\[
+\sum_{i=1}^{m}A_{B(i)}x_{B(i)}=\sum_{i=1}^nA_ix_i=Ax=b
+\]</span> ​ 由于列<span class="math inline">\(A_{B(1)},\dots, A_{B(m)}\)</span>相互线性独立，因此<span class="math inline">\(x_{B(1)},\dots,x_{B(m)}\)</span>的值是唯一的，即由n个有效约束形成的线性方程组有唯一解(其余n-m个变量值都为0)，说明<span class="math inline">\(x\)</span>是一个基解。</p>
+<p>​ 相反，若<span class="math inline">\(x\)</span>是一个基解。令<span class="math inline">\(x_{B(1)},\dots,x_{B(k)}\)</span>表示<span class="math inline">\(x\)</span>中非0的索引。由于<span class="math inline">\(x\)</span>是基解，因此线性方程组<span class="math inline">\(\sum_{i=1}^nA_ix_i=b\)</span>和<span class="math inline">\(x_i=0,i\neq B(1),\dots,B(k)\)</span>有唯一解，即<span class="math inline">\(x_{B(1)},\dots,x_{B(k)}\)</span>是线性方程组组<span class="math inline">\(\sum_{i=1}^kA_ix_i=b_i\)</span>的唯一解，进而得到<span class="math inline">\(A_{B(1)},\dots A_{B(k)}\)</span>是线性独立的。因为若不是相互线性独立，则存在不全为零的标量<span class="math inline">\(\lambda_1,\dots,\lambda_k\)</span>满足<span class="math inline">\(\sum_{i=1}^kA_i\lambda_i=0\)</span>，进而<span class="math inline">\(\sum_{i=1}^kA_i(x_i+\lambda_i)=b_i\)</span>，与前面解的唯一性相矛盾。</p>
+<span id="more"></span>
+<p>​ 由于<span class="math inline">\(A_{B(1)},\dots A_{B(k)}\)</span>线性独立，则可以得出<span class="math inline">\(k\le m\)</span>(矩阵最大的秩为m)。由于m有个线性独立的行，也一定能找到m个线性独立的列。因此，我们能找到m-k个额外的列<span class="math inline">\(A_{k+1},\dots,A(m)\)</span>使得列<span class="math inline">\(A_{B(1)},\dots,A_{B(m)}\)</span>线性独立。则如果<span class="math inline">\(i\neq B(1),\dots,B(m)\)</span>，有<span class="math inline">\(i\neq B(1),\dots,B(k)\)</span>，得到<span class="math inline">\(x_i=0\)</span>。因此，定理的两个表述都得到满足。</p>
+<p>​ 根据以上理论，任何一个基解都可以用以下的步骤确定：</p>
+<ol type="1">
+<li>选择m个线性独立的列<span class="math inline">\(A_{B(1)},\dots A_{B(m)}\)</span></li>
+<li>对所有<span class="math inline">\(i\neq B(1),\dots,B(m)\)</span>,令<span class="math inline">\(x_i=0\)</span></li>
+<li>解线性方程组<span class="math inline">\(Ax=b\)</span>，<span class="math inline">\([x_{B(1)},\dots,x_{B(m)}]^T\)</span></li>
+</ol>
+<p>​ 通过以上步骤，如果得到的基解都是非负的，则该基解是一个基可行解。对于一个基解，变量<span class="math inline">\(x_{B(1)},\dots,x_{B(m)}\)</span>被称为基变量(basic variables)，其余变量被称为非基变量(nonbasic)，而基向量对应的列<span class="math inline">\(A_{B(1)},\dots A_{B(m)}\)</span>被称为基列向量(basic columns)，这m个向量构成了空间<span class="math inline">\(R^m\)</span>的一个基。一般认为如果两个基有不同的索引<span class="math inline">\(\{B(1),\dots,B(m\}\)</span>，则称这两个基是不同的(索引相同顺序不同也视为同一个基)</p>
+<p>​ 在确定一个基后，该基的值可以通过求解线性方程组<span class="math inline">\(Bx_B=b\)</span>来确定，其中<span class="math inline">\(B\)</span>是由所有基变量对应的列向量组成的<span class="math inline">\(A\)</span>的一个分块矩阵，由于<span class="math inline">\(B\)</span>的列向量都是线性独立的，因此<span class="math inline">\(B\)</span>一定可逆，<span class="math inline">\(x_B\)</span>可以通过计算<span class="math inline">\(B^{-1}b\)</span>唯一确定。</p>
+<p>​ 从另一个角度看，<span class="math inline">\(Ax=b\)</span>或<span class="math inline">\(\sum_{i=1}^nA_ix_i=b\)</span>可以看做为列向量<span class="math inline">\(A_i\)</span>通过对应的系数<span class="math inline">\(x_i\)</span>相加而合成向量<span class="math inline">\(b\)</span>。假设考虑一个m=2, n=4的标准型，4个变量列向量分别对应下图中的<span class="math inline">\(A_1,A_2,A_3,A_4\)</span>，当令<span class="math inline">\(A_1,A_2\)</span>形成一个基时，得到的基解是不可行的，因为<span class="math inline">\(x_2\)</span>一定要小于0才能将<span class="math inline">\(A_1,A_2\)</span>合成到<span class="math inline">\(b\)</span>。同理<span class="math inline">\(A_1,A_3\)</span>为基得到的基解是可行的，而<span class="math inline">\(A_1,A_4\)</span>无法形成一个基，因为这两个向量是线性相关的。</p>
+<p><img src="C:/Users/64310/Pictures/线性规划/synthesizeVector.png" style="zoom:30%;"></p>
+<h3 id="基和基解的对应关系">基和基解的对应关系</h3>
+<p>前文提到两个基解是相邻的当它们有相同的n-1个有效约束，在标准形式下，我们称两个基是相邻的当它们有n-1个相同的基列向量索引，因此相邻的基解可以通过相邻的基获得。</p>
+<p><strong>推论</strong>：令<span class="math inline">\(P=\{x\vert Ax=b,x\ge0\}\)</span>为一个非空的多面体，其中<span class="math inline">\(A\)</span>是一个<span class="math inline">\(m\times n\)</span>矩阵，其行索引为<span class="math inline">\(a_1',\dots,a_m'\)</span>，假设<span class="math inline">\(rank(A)=k\lt m\)</span>且行<span class="math inline">\(a_{i1}',\dots,a_{ik}'\)</span>是线性独立的，则多面体<span class="math inline">\(Q=\{x\vert a'_{i1}x=b_{i1},\dots,a_{ik}'x=b_{ik},x\ge0\}\)</span>，则<span class="math inline">\(Q=P\)</span></p>
+<p><strong>证明</strong>：假设矩阵A的前k行是线性独立的，即<span class="math inline">\(i_1=1,\dots,i_k=k\)</span>。显然<span class="math inline">\(P\subset Q\)</span>,因为任何满足Q所有约束的解都满足P的所有约束。由于<span class="math inline">\(rank(A)=k\)</span>，则行向量<span class="math inline">\(a_{i1}',\dots,a_{ik}'\)</span>构成了行空间的一个基，因此A的任意一个行向量<span class="math inline">\(a_i'\)</span>都能表示为<span class="math inline">\(a_i'=\sum_{j=1}^k\lambda_{ija_j'}\)</span>.令<span class="math inline">\(x\)</span>表示P的一个约束，则 <span class="math display">\[
+b_i=a_i'x=\sum_{j=1}^k\lambda_{ij}a_j'x=\sum_{j=1}^k\lambda_{ij}b_j
+\]</span> 因此，对于Q中的任意一个元素y，都可以表示为： <span class="math display">\[
+a_i'y=\sum_{j=1}^k\lambda_{ij}a_j'y=\sum_{j=1}^k\lambda_{ij}b_j=b_i
+\]</span> 即<span class="math inline">\(y\in P\)</span>，因此得到<span class="math inline">\(Q\subset P\)</span>，进而推出<span class="math inline">\(Q=P\)</span></p>
+<p>因此，在可行域非空的情况下，一个标准型的线性规划问题总能转为一个所有等式约束都相互独立的等价的标准型问题。</p>
+<h3 id="退化解">退化解</h3>
+<p><strong>定义</strong>：当在基解<span class="math inline">\(x\)</span>处有超过n个有效约束，则称<span class="math inline">\(x\in R^n\)</span>是退化解。</p>
+<p>在二维空间，一个退化解是三个及以上直线的交点，三维空间是四个以上平面的交界。考虑多面体P： <span class="math display">\[
+\begin{align}
+x_1+x_2+2x_3&amp;\le8\\
+x_2+6x_3&amp;\le12\\
+x_1&amp;\le4\\
+x_2&amp;\le6\\
+x_1,x_2,x_3&amp;\ge0\\
+\end{align}
+\]</span> ​ 向量<span class="math inline">\(x=(2,6,0)\)</span>不是退化解，而向量<span class="math inline">\(x=(4,0,2)\)</span>是退化解，因为它同时满足4个有效约束，分别为<span class="math inline">\(x_1+x_2+2x_3\le8,x_2+6x_3\le12,x_1\le4,x_2\ge_0\)</span></p>
+<p>​ 而对于一个标准型的多面体，其m个等式约束一定是有效的，因此拥有超过n个有效约束与拥有超过n-m个值为零的变量是等价的，即引出以下定义：</p>
+<p><strong>定义</strong>：对于标准型<span class="math inline">\(P=\{x\in R^n\vert Ax=b,x\ge0\}\)</span>, <span class="math inline">\(x\)</span>是一个基解, m是<span class="math inline">\(A\)</span>的行数。当向量<span class="math inline">\(x\)</span>有超过n-m个为的元素，<span class="math inline">\(x\)</span>是一个退化的基解。</p>
+<p>当基解<span class="math inline">\(x\)</span>是退化的时候，我们有超过一种方式从这些值为的变量中选择n-m个变量作为非基变量，在这种情况下，会出现几个不同的基对应同一个基解的情况。</p>
+<p>一个基可行解的退化不完全是多面体的几何性质，它依赖于一个多面体的特定描述。考虑多面体： <span class="math display">\[
+P=\{(x_1.x_2,x_3)\vert x_1-x_2=0,x_1+x_2+2x_3=2,x_1,x_2,x_3\ge0\}
+\]</span> <img src="C:/Users/64310/Pictures/线性规划/degenerationSample.png" style="zoom:50%;"></p>
+<p>该多面体n=3,m=2，则n-m=1.向量(1,1,0)是非退化解，因为只有一个变量值为0.而向量(0,0,1)是退化解，因为有2个变量值为0.但对该多面体换一种方式描述<span class="math inline">\(P=\{(x_1.x_2,x_3)\vert x_1-x_2=0,x_1+x_2+2x_3=2,x_1,x_3\ge0\}\)</span>,向量(0,0,1)就不再是一个退化基可行解了。</p>
+<p>因此，一个基可行解在一种表述下是退化解，而在另一种表述下可能就不是退化解。</p>
+<h2 id="极点extreme-point">极点(extreme point)</h2>
+<h3 id="极点的存在性">极点的存在性</h3>
+<p>本节说明极点存在的条件，首先引入下面的概念：</p>
+<p><strong>定义</strong>：多面体<span class="math inline">\(P\subset R^n\)</span>含有一条直线，当存在向量<span class="math inline">\(x\in P\)</span>和非零向量<span class="math inline">\(d\in R^n\)</span>对于任意标量<span class="math inline">\(\lambda\)</span>满足<span class="math inline">\(x+\lambda d\in P\)</span></p>
+<p>不是所有多面体都有极点的，如一个半空间就不存在顶点，下面将给出极点存在性的等价表示：</p>
+<p><strong>定理</strong>：设多面体<span class="math inline">\(P=\{x\in R^n\vert a_i'x\ge b_i,i=1,\dots,m\}\)</span>非空，则一下表述是等价的：</p>
+<ol type="1">
+<li>多面体P至少存在一个极点</li>
+<li>多面体P不含有一条直线</li>
+<li>在向量组<span class="math inline">\(a_1,\dots,a_m\)</span>中有n个相互线性独立的向量</li>
+</ol>
+<p><strong>证明</strong>：</p>
+<p>(2)→(1)：首先证明如果P不含有一条直线，则一定存在一个极点。令<span class="math inline">\(x\)</span>为P中的一个元素，且<span class="math inline">\(I=\{i\vert a_i'x=b_i\}\)</span>。如果I中存在n个线性无关的向量，即有n个线性无关的独立约束，则<span class="math inline">\(x\)</span>显然是一个基可行解，根据之前的证明，基可行解和极点是等价的。若I中不存在n个线性无关的向量，则所有<span class="math inline">\(a_i,i\in I\)</span>构成了<span class="math inline">\(R^n\)</span>的一个子空间，则存在非零向量<span class="math inline">\(d\in R^n\)</span>与所有<span class="math inline">\(a_i,i\in I\)</span>正交使<span class="math inline">\(a_i'd=0,i\in I\)</span>。考虑向量<span class="math inline">\(y=x+\lambda d\)</span>，当<span class="math inline">\(i\in I\)</span>时，<span class="math inline">\(a_i'y=a_i'x+\lambda a_id=a_i'x=b_i\)</span>，即对于I中的约束仍为有效约束。但由于多面体不含有直线，因此当<span class="math inline">\(\lambda\)</span>大到某一个值<span class="math inline">\(\lambda^*\)</span>时一定会有一些约束<span class="math inline">\(j\notin I\)</span>将要被违背，这时候的向量y相比向量x多了一个有效约束，通过这样的方式不断添加有效约束，最终可以得到一个极点。</p>
+<p>(1)→(3)：如果P是一个极点，则P也是一个基可行解，因此在<span class="math inline">\(x\)</span>处存在n个有效约束，其对于的向量<span class="math inline">\(a_i\)</span>也是相互线性独立的</p>
+<p>(3)→(2)：不失一般性假设<span class="math inline">\(a_1,\dots,a_n\)</span>是相互线性独立的。若<span class="math inline">\(P\)</span>存在一条直线<span class="math inline">\(x+\lambda d\)</span>，<span class="math inline">\(d\in R^n,d&gt;0\)</span>则对所有的<span class="math inline">\(i,\lambda\)</span>有<span class="math inline">\(a_i'(x+\lambda d)\ge b_i\)</span>，因此<span class="math inline">\(a_i'd=0\)</span>，但由于<span class="math inline">\(a_i,\dots,a_n\)</span>是相互线性独立的能够构成<span class="math inline">\(R_n\)</span>的一个基，则d=0，与前面假设矛盾，因此多面体不存在一条直线。</p>
+<p>一个有界的多面体不存在一条直线，比如一个正象限<span class="math inline">\(\{x\vert x\ge 0\}\)</span>不存在一条直线。由于一个标准型的多面体被正象限所包括，它一定也不存在一条直线，因此一个非空有界的多面体或一个标准型的多面体至少有一个基可行解。</p>
+<h3 id="极点的最优性">极点的最优性</h3>
+<p>在建立极点的存在性条件后，本节将证明如果一个线性规划问题有最优解且可行域存在至少一个极点，则最优解出现在极点上。</p>
+<p><strong>定理</strong>：可行域为多面体P的线性规划问题以最小化成本<span class="math inline">\(c'x\)</span>为目标函数，设P有至少一个极点且问题有最优解，则存在一个最优解是P的一个极点。</p>
+<p><strong>证明</strong>：令Q表示最优解的集合，v表示成本<span class="math inline">\(c'x\)</span>的最小值，则Q可以表示为<span class="math inline">\(Q=\{x\in R^n\vert Ax\ge b,c'x=v\}\)</span>，也是一个多面体。由于P存在极点，即P不存在一条直线，而<span class="math inline">\(Q\subset P\)</span>，也不存在一条直线，有至少一个极点。设<span class="math inline">\(x^*\)</span>为Q的一个极点，若<span class="math inline">\(x^*\)</span>不是P的极点，存在<span class="math inline">\(y\in P,z\in P\)</span>使得<span class="math inline">\(x=\lambda y+(1-\lambda)z,z\in[0,1]\)</span>, 则<span class="math inline">\(v=c'x=c'\lambda y+c'(1-\lambda)z\)</span>，由于v是原问题的最优解，<span class="math inline">\(c'y\ge v,c'z\ge z\)</span>，只有<span class="math inline">\(c'y=c'z=v\)</span>时等式成立，这表示<span class="math inline">\(y\in Q,z\in Q\)</span>，与<span class="math inline">\(x^*\)</span>是Q的一个极点相矛盾，因此<span class="math inline">\(x^*\)</span>是P的一个极点。</p>
+<p>上述证明适用于标准型或有界的多面体，因为它们不包含直线。下面的证明将表示如果最优解不是无穷的，则一定存在最优解出现在极点上。</p>
+<p><strong>定理</strong>：可行域为多面体P的线性规划问题以最小化成本<span class="math inline">\(c'x\)</span>为目标函数，设P至少有一个极点，则要么最优解的值为<span class="math inline">\(-\infty\)</span>，或存在一个极点为最优解。</p>
+<p><strong>证明</strong>：在证明前使用以下术语：向量<span class="math inline">\(x\in P\)</span>的秩为k，当在<span class="math inline">\(x\)</span>处可以找到最多k个线性无关的有效约束。设最优解是有界的，考虑一些<span class="math inline">\(x\in P,rank(x)=k&lt;n\)</span>，令<span class="math inline">\(I=\{i\vert a_i'x=b_i\}\)</span>，由于k&lt;n，因此<span class="math inline">\(a_i,i\in I\)</span>张成了<span class="math inline">\(R^n\)</span>的一个子空间，存在向量<span class="math inline">\(d\ne 0\)</span>与所有<span class="math inline">\(a_i,i\in I\)</span>正交使<span class="math inline">\(a_id=0\)</span>，通过选择<span class="math inline">\(d\)</span>的值的正负性可以令<span class="math inline">\(c'd&lt;0\)</span>。考虑射线<span class="math inline">\(y=x+\lambda d\)</span>，由于d与x的有效约束向量正交，因此有<span class="math inline">\(a_iy=b_i,i\in I\)</span>。当整条射线都在P内部时，<span class="math inline">\(\vert d\vert\)</span>可以取无限大，则最小成本就为<span class="math inline">\(-\infty\)</span>。若只有部分在P内部，则在边界上有<span class="math inline">\(\lambda^*&gt;0,j\notin I\)</span>使得<span class="math inline">\(a_j'(x+\lambda^*d)=a_j'y=b_j\)</span>，由于<span class="math inline">\(c'd&lt;0\)</span>，因此<span class="math inline">\(c'y&lt;c'x\)</span>，且此时y的秩为k+1. 如果c与d也是正交的，则最后得到<span class="math inline">\(c'y=c'x\)</span>，</p>
+<p>​ 通过这种方式总可以找到一个新的向量<span class="math inline">\(y\in P,c'y\le c'x,rank(y)&gt;rank(x)\)</span>，通过重复这种方式最终可以找到一个向量<span class="math inline">\(w\)</span>令<span class="math inline">\(c'w\le c'x\)</span>，且<span class="math inline">\(w\)</span>的秩为n。因此<span class="math inline">\(w\)</span>是一个基可行解，也是一个极点。令<span class="math inline">\(w^1,\dots,w^r\)</span>表示P中基可行解的集合，且<span class="math inline">\(w^*\)</span>是最优的基可行解<span class="math inline">\(c'w^*\le c'w^i\)</span>。前面已经证明了对于每一个<span class="math inline">\(x\)</span>都能找到一些<span class="math inline">\(i\)</span>令<span class="math inline">\(c'w^i\le c'x\)</span>，因此可以得到<span class="math inline">\(c'w^*\le c'x\)</span>，<span class="math inline">\(w^*\)</span>是最优的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" rel="tag"># 线性规划</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/05/Benders%E5%88%86%E8%A7%A3/" rel="prev" title="Benders分解">
+      <i class="fa fa-chevron-left"></i> Benders分解
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%9E%8B%E7%9A%84%E5%A4%9A%E9%9D%A2%E4%BD%93"><span class="nav-number">1.</span> <span class="nav-text">标准型的多面体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E5%92%8C%E5%9F%BA%E8%A7%A3%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.</span> <span class="nav-text">基和基解的对应关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%8C%96%E8%A7%A3"><span class="nav-number">1.2.</span> <span class="nav-text">退化解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E7%82%B9extreme-point"><span class="nav-number">2.</span> <span class="nav-text">极点(extreme point)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E7%82%B9%E7%9A%84%E5%AD%98%E5%9C%A8%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">极点的存在性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E7%82%B9%E7%9A%84%E6%9C%80%E4%BC%98%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">极点的最优性</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="BraveUNow"
+      src="/images/danxia.jpg">
+  <p class="site-author-name" itemprop="name">BraveUNow</p>
+  <div class="site-description" itemprop="description">BraveUNow的个人博客，主要分享自己的一些学习笔记和生活经历</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/BraveUNow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;BraveUNow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:k10726@outlook.com" title="E-Mail → mailto:k10726@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/braveunow" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;braveunow" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/k10726" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;k10726" rel="noopener" target="_blank"><i class="custom steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BraveUNow</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

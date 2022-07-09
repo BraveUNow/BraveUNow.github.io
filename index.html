@@ -264,6 +264,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.braveunow-hyx.xyz/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/danxia.jpg">
+      <meta itemprop="name" content="BraveUNow">
+      <meta itemprop="description" content="BraveUNow的个人博客，主要分享自己的一些学习笔记和生活经历">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BraveUNow's hut">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%BA%8C/" class="post-title-link" itemprop="url">几何角度看线性规划(二)</a>
+        </h2>
+
+        <div class="post-meta">
+	
+	
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-26 14:14:19" itemprop="dateCreated datePublished" datetime="2022-06-26T14:14:19+08:00">2022-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-09 16:57:02" itemprop="dateModified" datetime="2022-07-09T16:57:02+08:00">2022-07-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%AD%B9%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">运筹学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="标准型的多面体">标准型的多面体</h2>
+<p>​ 一个标准型的多面体可以表示为<span class="math inline">\(P=\{x\in R^n\vert Ax=b,x\ge0\}\)</span>，其中<strong>A</strong>是一个<span class="math inline">\(m\times n\)</span>的矩阵，对应m个等式约束和n个变量，并假设m个约束是相互独立(这要求<span class="math inline">\(m\le n\)</span>，事实上线性相关的约束可以被舍弃而不影响解的性质)</p>
+<p>​ 上一章提到，一个基解是通过求解n个线性无关约束组成的线性方程组得到的，由于标准型的约束数量m不多于n，为了获得一个基解，需要选择m-n个变量并令它们为0，即令这m-n个变量对应的约束<span class="math inline">\(x_i\ge0\)</span>成为有效约束。其中对于这m-n个约束的选择并不是随意的。</p>
+<p><strong>定理</strong>：对于一个标准型的多面体，向量<span class="math inline">\(x\in R^n\)</span>是一个基解当且仅当有<span class="math inline">\(Ax=b\)</span>，且存在索引<span class="math inline">\(B(1),\dots,B(m)\)</span>令：</p>
+<ol type="1">
+<li>列<span class="math inline">\(A_{B(1)},\dots, A_{B(m)}\)</span>相互线性独立</li>
+<li>如果<span class="math inline">\(i\neq B(1),\dots,B(m)\)</span>，则<span class="math inline">\(x_i=0\)</span></li>
+</ol>
+<p><strong>证明</strong>：假设<span class="math inline">\(x\in R^n\)</span>，且存在<span class="math inline">\(B(1),\dots,B(m)\)</span>满足定理的表述，则有 <span class="math display">\[
+\sum_{i=1}^{m}A_{B(i)}x_{B(i)}=\sum_{i=1}^nA_ix_i=Ax=b
+\]</span> ​ 由于列<span class="math inline">\(A_{B(1)},\dots, A_{B(m)}\)</span>相互线性独立，因此<span class="math inline">\(x_{B(1)},\dots,x_{B(m)}\)</span>的值是唯一的，即由n个有效约束形成的线性方程组有唯一解(其余n-m个变量值都为0)，说明<span class="math inline">\(x\)</span>是一个基解。</p>
+<p>​ 相反，若<span class="math inline">\(x\)</span>是一个基解。令<span class="math inline">\(x_{B(1)},\dots,x_{B(k)}\)</span>表示<span class="math inline">\(x\)</span>中非0的索引。由于<span class="math inline">\(x\)</span>是基解，因此线性方程组<span class="math inline">\(\sum_{i=1}^nA_ix_i=b\)</span>和<span class="math inline">\(x_i=0,i\neq B(1),\dots,B(k)\)</span>有唯一解，即<span class="math inline">\(x_{B(1)},\dots,x_{B(k)}\)</span>是线性方程组组<span class="math inline">\(\sum_{i=1}^kA_ix_i=b_i\)</span>的唯一解，进而得到<span class="math inline">\(A_{B(1)},\dots A_{B(k)}\)</span>是线性独立的。因为若不是相互线性独立，则存在不全为零的标量<span class="math inline">\(\lambda_1,\dots,\lambda_k\)</span>满足<span class="math inline">\(\sum_{i=1}^kA_i\lambda_i=0\)</span>，进而<span class="math inline">\(\sum_{i=1}^kA_i(x_i+\lambda_i)=b_i\)</span>，与前面解的唯一性相矛盾。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%BA%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.braveunow-hyx.xyz/2022/06/05/Benders%E5%88%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -504,7 +598,7 @@ x\ge0,y\in Y\subseteq \mathbb{R}^q
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
