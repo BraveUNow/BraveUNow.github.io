@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.braveunow-hyx.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="多面体的另一种表达 前文多面体是通过约束的形式来定义的，而本节将证明一个有界的多面体可以表示为其极点的凸壳。类似的，一个无界的多面体可以用其极点和极射线进行表示。 定理：一个非空有界的多面体是其极点的凸壳。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几何角度看线性规划(三)">
+<meta property="og:url" content="http://www.braveunow-hyx.xyz/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%B8%89/index.html">
+<meta property="og:site_name" content="BraveUNow&#39;s hut">
+<meta property="og:description" content="多面体的另一种表达 前文多面体是通过约束的形式来定义的，而本节将证明一个有界的多面体可以表示为其极点的凸壳。类似的，一个无界的多面体可以用其极点和极射线进行表示。 定理：一个非空有界的多面体是其极点的凸壳。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-26T06:14:19.000Z">
+<meta property="article:modified_time" content="2022-07-11T08:31:35.997Z">
+<meta property="article:author" content="BraveUNow">
+<meta property="article:tag" content="线性规划">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.braveunow-hyx.xyz/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%B8%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>几何角度看线性规划(三) | BraveUNow's hut</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end -->
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="BraveUNow's hut" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">BraveUNow's hut</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.braveunow-hyx.xyz/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%B8%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/danxia.jpg">
+      <meta itemprop="name" content="BraveUNow">
+      <meta itemprop="description" content="BraveUNow的个人博客，主要分享自己的一些学习笔记和生活经历">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BraveUNow's hut">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          几何角度看线性规划(三)
+        </h1>
+
+        <div class="post-meta">
+	
+	
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-26 14:14:19" itemprop="dateCreated datePublished" datetime="2022-06-26T14:14:19+08:00">2022-06-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-11 16:31:35" itemprop="dateModified" datetime="2022-07-11T16:31:35+08:00">2022-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%AD%B9%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">运筹学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="多面体的另一种表达">多面体的另一种表达</h2>
+<p>前文多面体是通过约束的形式来定义的，而本节将证明一个有界的多面体可以表示为其极点的凸壳。类似的，一个无界的多面体可以用其极点和极射线进行表示。</p>
+<p><strong>定理</strong>：一个非空有界的多面体是其极点的凸壳。</p>
+<span id="more"></span>
+<blockquote>
+
+</blockquote>
+<p><strong>证明</strong>：首先定义多面体<span class="math inline">\(P\subset R^n\)</span>的维数为最小整数k，即P位于<span class="math inline">\(R^m\)</span>的一些k维的仿射子空间。如果P是零维的，它只包括一个点，这个点即是P的一个极点，定理成立。其他情况，使用数学归纳法，首先假设对于所有维数小于k的多面体这个结论都是成立的，令<span class="math inline">\(P=\{x\in R^n\vert a_i'x\ge b_i,i=1,\dots,m\}\)</span>为非空k维的多面体，则P位于<span class="math inline">\(R^n\)</span>的仿射子空间<span class="math inline">\(S\)</span>内，其中<span class="math inline">\(S\)</span>可以表示为: <span class="math display">\[
+\begin{equation*}
+S=\{x^0+\lambda_1x^1+\dots,\lambda_kx^k\vert\lambda_1,\dots,\lambda_k\in R\}
+\end{equation*}
+\]</span> 其中<span class="math inline">\(x^1,\dots,x^k\)</span>为<span class="math inline">\(R^n\)</span>中的一些向量，令<span class="math inline">\(f_1,\dots,f_{n-k}\)</span>表示<span class="math inline">\(R^n\)</span>中正交于<span class="math inline">\(x^1,\dots,x^k\)</span>的向量。令<span class="math inline">\(g_i=f_i'x^0\)</span>，则S的每个向量都满足<span class="math inline">\(f_i'x=g_i,i=1,\dots,n-k\)</span>，由于<span class="math inline">\(P\subset S\)</span>，上式对P的每个向量也都成立。</p>
+<p>令z为P的一个向量，如果z是P的一个极点，则z一定是P极点的一个凸组合；若z不是P的一个极点，选择P的任意一个极点y，则可以建立一条射线<span class="math inline">\(z+\lambda(z-y),z\ge 0\)</span>。由于P是有界的，射线会在<span class="math inline">\(\lambda=\lambda^*\)</span>时违背某个约束<span class="math inline">\(a_{i^*}'x\ge b_{i^*}\)</span>，设将要违背约束时的向量为u，则 <span class="math display">\[
+\begin{equation*}
+u=z+\lambda^*(z-y)\\
+a_{i^*}'u=b_{i^*}
+\end{equation*}
+\]</span> 当<span class="math inline">\(\lambda\gt \lambda^*\)</span>时，该约束会被违背，因此<span class="math inline">\(a_{i^*}'(z-y)\lt 0\)</span>。令多面体Q表示为： <span class="math display">\[
+\begin{align*}
+Q&amp;=\{x\in P\vert a_{i^*}'x=b_{i^*}\}\\
+&amp;=\{x\in R^n\vert a_i'x\ge b_i, i=1,\dots,m, a_{i^*}'x=b_{i^*}\}
+\end{align*}
+\]</span> 由于<span class="math inline">\(z\in P,y\in P\)</span>，则有<span class="math inline">\(f_i'z=f_iy=b_i\)</span>，这表示<span class="math inline">\(y-z\)</span>与所有<span class="math inline">\(f_i\)</span>正交，又因为<span class="math inline">\(a_{i^*}'(z-y)\lt 0\)</span>，这说明<span class="math inline">\(a_{i^*}'\)</span>不是<span class="math inline">\(f_i\)</span>的凸组合，且 <span class="math display">\[
+\begin{equation*}
+Q\subset \{x\in R^n\vert a_{i^*}'x=b_i,f_i'x=g_i,i=1,\dots,n-k\}
+\end{equation*}
+\]</span> 上述右侧共有n-k+1条线性无关的等式约束，因此形成了k-1维的仿射空间，又由于Q是右侧的一个子空间，其最大维数是k-1维。前面已经假设了对于所有维数小于k的多面体都是其极点的凸桥，因此u可以表示为凸组合： <span class="math display">\[
+\begin{equation*}
+u=\sum_i \lambda_iv^i
+\end{equation*}
+\]</span> 其中<span class="math inline">\(v^i\)</span>为多面体Q的极点，<span class="math inline">\(\lambda_i\)</span>为非负标量且和为1.由于v是Q的极点，一定n个线性无关的向量<span class="math inline">\(a_i\)</span>满足<span class="math inline">\(a_i'v=b_i\)</span>，因此v也是P的极点，对前面<span class="math inline">\(u=z+\lambda^*(z-y)\)</span>移项，则有： <span class="math display">\[
+\begin{equation*}
+z=\frac{u+\lambda^*y}{1+\lambda^*}=\frac{\lambda^*y}{1+\lambda^*}+\sum_i\frac{\lambda_i}{1+\lambda^*}v^i
+\end{equation*}
+\]</span> 因此，z是P极点的一个凸组合。</p>
+<h2 id="多面体的映射fourier-motzkin消元法">多面体的映射：Fourier-Motzkin消元法</h2>
+<p>本节将给出一种过去解决线性规划问题的方法，该方法实用性较弱，但可以得到一些有趣的推论。</p>
+<p>方法的关键是利用了投影的概念，即：<span class="math inline">\(x=(x_1,\dots,x_n)\)</span>是<span class="math inline">\(R^n\)</span>的一个向量，映射<span class="math inline">\(\pi_k:R^n\to R^k\)</span>将x投影到其前k个坐标 <span class="math display">\[
+\begin{equation*}
+\pi_k(x)=\pi_k(x_1,\dots,x_n)=(x_1,\dots,x_k)\quad k\le n
+\end{equation*}
+\]</span> 同理，集合<span class="math inline">\(S\subset R^n\)</span>的投影为： <span class="math display">\[
+\begin{align*}
+\Pi_k(S)&amp;=\{\pi_k(x)\vert x\in S\}\\
+&amp;=\{(x_1,\dots,x_k)\vert 存在x_{k+1},\dots,x_n,s.t. (x_1,\dots,x_n)\in S\}
+\end{align*}
+\]</span> 显然，S非空当且仅当<span class="math inline">\(\Pi_k(S)\)</span>非空，因此对于多面体P，通过消去变量<span class="math inline">\(x_n\)</span>来构建集合<span class="math inline">\(\Pi_{n-1}(P)\)</span>，判断<span class="math inline">\(\Pi_{n-1}(P)\)</span>是否非空以此来确定P是否非空。通过不断消去变量直到<span class="math inline">\(\Pi_1(P)\)</span>，则是否非空就很好确定了。这个方法的缺点在于每消去一个变量就会增加很多新的约束。下面将介绍消元方法，给定多面体P的形式： <span class="math display">\[
+\sum_{j=1}^na_{ij}x_j\ge b_i\quad i=1,\dots,m.
+\]</span> 我们希望消去<span class="math inline">\(x_n\)</span>，来构造映射<span class="math inline">\(\Pi_{n-1}(P)\)</span></p>
+<ol type="1">
+<li><p>首先对约束移向，构造以下形式： <span class="math display">\[
+ a_{ij}x_n\ge-\sum_{j=1}^{n-1}a_{ij}x_j+b_i\quad i=1,\dots,m
+ \]</span> 当<span class="math inline">\(a_{in}\ne 0\)</span>时，上式两边同时除以<span class="math inline">\(a_{in}\)</span>，令<span class="math inline">\(\bar{x}=(x_1,\dots,x_{n-1})\)</span>，则多面体P也可以表示为： <span class="math display">\[
+ \begin{align}
+ x_n\ge d_i+f_i'\bar{x}\quad\text{if }a_{in}&gt;0\\
+ d_j+f_j'\bar{x}\ge x_n\quad\text{if }a_{jn}&lt;0\\
+ 0\ge d_k+f_k'\bar{x}\quad\text{if }a_{kn}=0\\
+ \end{align}
+ \]</span> 其中，<span class="math inline">\(d_i,d_j,d_k\)</span>为标量，<span class="math inline">\(f_i,f_j,f_k\)</span>为n-1维的向量</p></li>
+<li><p>令Q表示由以下约束定义的<span class="math inline">\(R^{n-1}\)</span>中的多面体： <span class="math display">\[
+\begin{align}
+d_j+f_j'\bar{x}\ge d_i+f_i'\bar{x}\quad&amp;\text{if }a_{in}&gt;0\text{ and }a_{jn}&lt;0\\
+0\ge d_k+f_k'\bar{x}\quad&amp;\text{if }a_{kn}=0\\
+\end{align}
+\]</span></p></li>
+</ol>
+<p>由上述消元法得到的多面体<span class="math inline">\(Q\)</span>是与<span class="math inline">\(\Pi_{n-1}(P)\)</span>的投影等价的</p>
+<p><strong>证明</strong>：通过证明<span class="math inline">\(\Pi_{n-1}(P)\subset Q,Q\subset \Pi_{n-1}(P)\)</span>, 首先证明<span class="math inline">\(\Pi_{n-1}(P)\subset Q\)</span>.令<span class="math inline">\(\bar{x}\in \Pi_{n-1}(P)\)</span>, 根据定义存在一些<span class="math inline">\(x_n\)</span>使得<span class="math inline">\((\bar{x},x_n)\in P\)</span>，则<span class="math inline">\(x=(\bar{x},x_n)\)</span>满足约束(3)-(5)，自然也能推出满足约束(6)和(7)，因此<span class="math inline">\(\Pi_{n-1}(P)\subset Q\)</span>.下面将证明<span class="math inline">\(Q\subset \Pi_{n-1}(P)\)</span>.</p>
+<p>约束(6)可以推出： <span class="math display">\[
+\begin{equation*}
+\underset{j\vert a_{jn&lt;0}}{min}(d_j+f_j'\bar{x})\ge \underset{i\vert a_{in&gt;0}}{max}(d_i+f_i'\bar{x})
+\end{equation*}
+\]</span> 其中<span class="math inline">\(\bar{x}\in Q\)</span>,取<span class="math inline">\(x_n\)</span>为上式两端之间的一个任意值,则<span class="math inline">\((\bar{x},x_n)\)</span>一定满足约束(3)-(5)，即<span class="math inline">\(\bar{x}\in P\)</span>, 因此, <span class="math inline">\(Q\subset \Pi_{n-1}(P)\)</span>.</p>
+<p>同样有 <span class="math display">\[
+\begin{align*}
+\pi_{n-2}(\pi_{n-1}(x))&amp;=\pi_{n-2}(x)\\
+&amp;或\\
+\Pi_{n-2}(\Pi_{n-1}(P))&amp;=\Pi_{n-2}(P)\\
+\end{align*}
+\]</span> <strong>例子：</strong>考虑多面体： <span class="math display">\[
+\begin{align*}
+x_1+x_2&amp;\ge1\\
+x_1+x_2+2x_3&amp;\ge2\\
+2x_1+3x_3&amp;\ge3\\
+x_1-4x_3&amp;\ge4\\
+-2x_1+x_2-x_3&amp;\ge5\\
+\end{align*}
+\]</span> 将约束转成以下形式： <span class="math display">\[
+\begin{align*}
+0&amp;\ge1-x_1-x_2\\
+x_3&amp;\ge1-x_1/2-x_2/2\\
+x_3&amp;\ge1-2x_1/3\\
+-1+x_1/4&amp;\ge x_3\\
+-5-2x_1+x_2&amp;\ge x_3\\
+\end{align*}
+\]</span> 则多面体Q可以由以下约束定义： <span class="math display">\[
+\begin{align*}
+0&amp;\ge1-x_1-x_2\\
+-1+x_1/4&amp;\ge1-x_1/2-x_2/2\\
+-1+x_1/4&amp;\ge1-2x_1/3\\
+-5-2x_1+x_2&amp;\ge1-x_1/2-x_2/2\\
+-5-2x_1+x_2&amp;\ge1-2x_1/3\\
+\end{align*}
+\]</span> 显然每消去一个变量都会产生<span class="math inline">\(I\times J+K\)</span>个约束，<span class="math inline">\(I,J,K\)</span>分别为消去变量系数大于0，小于0，等于0的约束的数量。即使<span class="math inline">\(P_1(P)\)</span>只有一维，消到这一步很多约束是多余的，但在消元过程中无法确保哪些约束是多余的，必须一一列举。</p>
+<p>该消元法可以推导出很多性质：</p>
+<p><strong>推论</strong>：<span class="math inline">\(P\subset R^{n+k}\)</span>是一个多面体，则它的投影 <span class="math display">\[
+\begin{equation*}
+\{x\in R^n\vert\text{存在}y\in R^k\text{使得}(x,y)\in P\}
+\end{equation*}
+\]</span> 也是一个多面体。上述消元法得到Q也是由一些等式、不等式的线性约束定义的，因此是多面体。</p>
+<p><strong>推论</strong>：令<span class="math inline">\(P\subset R^n\)</span>是一个多面体, <span class="math inline">\(A\)</span>是一个<span class="math inline">\(m\times n\)</span>的矩阵，则集合<span class="math inline">\(Q=\{AX\vert x\in P\}\)</span>也是一个多面体</p>
+<p><strong>证明</strong>：<span class="math inline">\(Q\)</span>可以理解为多面体<span class="math inline">\(\{(x,y)\in R^{n+m}\vert Ax=y,x\in P\}\)</span>在y坐标上的投影，即<span class="math inline">\(\{y\in R^m\vert\text{存在}x\in R^m\text{使}Ax=y,x\in P\}\)</span></p>
+<p><strong>推论</strong>：有限个向量的凸壳是多面体。</p>
+<p><strong>证明</strong>：凸壳 <span class="math display">\[
+\begin{equation*}
+\{\sum_{i=1}^{k}\lambda_ix^i\vert \sum_{i=1}^k\lambda_i=1,\lambda_i\ge0\}
+\end{equation*}
+\]</span> 是多面体 <span class="math display">\[
+\begin{equation*}
+\{(\lambda_1,\dots\lambda_k)\vert \sum_{i=1}^k\lambda_i=1,\lambda_i\ge0\}
+\end{equation*}
+\]</span> 的一个线性映射，因此也是一个多面体。</p>
+<p>最后将说明消元法是怎么解决线性规划问题的。考虑一个线性规划问题具有可行域P并以最小化<span class="math inline">\(c'x\)</span>为目标，通过引入一个约束<span class="math inline">\(x_0=c'x\)</span>，并使用n次消元法将变量<span class="math inline">\(x_1,\dots,x_n\)</span>消去，最后得到 <span class="math display">\[
+\begin{equation*}
+Q=\{x_0\vert\text{存在}x\in P使得x_0=c'x \}
+\end{equation*}
+\]</span> 最优的解即是Q的最小元素。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" rel="tag"># 线性规划</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/26/%E5%87%A0%E4%BD%95%E8%A7%92%E5%BA%A6%E7%9C%8B%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92-%E4%BA%8C/" rel="prev" title="几何角度看线性规划(二)">
+      <i class="fa fa-chevron-left"></i> 几何角度看线性规划(二)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%9D%A2%E4%BD%93%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%A1%A8%E8%BE%BE"><span class="nav-number">1.</span> <span class="nav-text">多面体的另一种表达</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%9D%A2%E4%BD%93%E7%9A%84%E6%98%A0%E5%B0%84fourier-motzkin%E6%B6%88%E5%85%83%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">多面体的映射：Fourier-Motzkin消元法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="BraveUNow"
+      src="/images/danxia.jpg">
+  <p class="site-author-name" itemprop="name">BraveUNow</p>
+  <div class="site-description" itemprop="description">BraveUNow的个人博客，主要分享自己的一些学习笔记和生活经历</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/BraveUNow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;BraveUNow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:k10726@outlook.com" title="E-Mail → mailto:k10726@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/braveunow" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;braveunow" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/k10726" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;k10726" rel="noopener" target="_blank"><i class="custom steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BraveUNow</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
